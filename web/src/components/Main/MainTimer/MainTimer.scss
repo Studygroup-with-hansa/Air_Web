@@ -4,5 +4,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--white);
   background-color: var(--main);
+
+  &-textBox {
+    div {
+      margin: 20px;
+      text-align: center;
+    }
+    &-text {
+      opacity: 80%;
+    }
+    &-time {
+      font-weight: bold;
+      font-size: 26px;
+    }
+    &-goal {
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 50px !important;
+    }
+    &-goal:hover {
+      text-decoration: none;
+    }
+  }
 }

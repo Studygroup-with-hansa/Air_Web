@@ -2,13 +2,12 @@
   height: 100vh;
 
   &-sideBar {
-    float: left;
-    width: 9%;
+    position: fixed;
+    width: 100px;
     height: 100vh;
   }
   &-content {
-    float: left;
-    width: 91%;
-    height: 40%;
+    width: 100%;
+    height: 420px;
   }
 }
