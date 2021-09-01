@@ -1,0 +1,13 @@
+.pageTemplate {
+  height: 100vh;
+
+  &-sideBar {
+    position: fixed;
+    width: 100px;
+    height: 100vh;
+  }
+  &-content {
+    width: 100%;
+    height: 420px;
+  }
+}

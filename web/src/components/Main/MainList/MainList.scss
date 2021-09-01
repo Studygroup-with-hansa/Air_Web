@@ -1,0 +1,13 @@
+.mainList {
+  width: 100%;
+  padding: 15px 25px 15px 130px;
+
+  &-title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+}
