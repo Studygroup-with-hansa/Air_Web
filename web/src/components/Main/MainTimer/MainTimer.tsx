@@ -2,7 +2,7 @@ import moment from "moment";
 import "./MainTimer.scss";
 
 const MainTimer = (): JSX.Element => {
-  const date = moment(new Date()).format("YYYY.MM.DD");
+  const date: string = moment(new Date()).format("YYYY.MM.DD");
 
   return (
     <div className="mainTimer">
