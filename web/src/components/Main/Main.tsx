@@ -6,7 +6,6 @@ import MainList from "./MainList";
 const Main = (): JSX.Element => {
   return (
     <>
-      <MainTimer />
       <MainList />
     </>
   );
