@@ -1,9 +1,9 @@
-import menu from "assets/hamburger.svg";
 import home from "assets/home.svg";
 import stat from "assets/stat.svg";
 import calender from "assets/calender.svg";
 import checkList from "assets/checkList.svg";
 import badge from "assets/badge.svg";
+import { FiLogOut } from "react-icons/fi";
 
 import "./SideBar.scss";
 
@@ -14,9 +14,6 @@ const SideBar = (): JSX.Element => {
 
   return (
     <div className="sideBar">
-      <div>
-        <img className="isMain" src={menu} alt="menu" />
-      </div>
       <div>
         <img className={path === "/" ? "isMain" : ""} src={home} alt="home" />
       </div>
@@ -48,6 +45,7 @@ const SideBar = (): JSX.Element => {
           alt="badge"
         />
       </div>
+      {/* <FiLogOut /> */}
     </div>
   );
 };

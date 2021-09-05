@@ -3,6 +3,7 @@ interface IStyleVariable {
   black: string;
   sideBar: string;
   main: string;
+  sideStroke: string;
 }
 
 export const styleVariable: IStyleVariable = {
@@ -10,4 +11,5 @@ export const styleVariable: IStyleVariable = {
   black: "#333333",
   sideBar: "#f8f8fa",
   main: "#5F79D3",
+  sideStroke: "#f1f1f3",
 };
