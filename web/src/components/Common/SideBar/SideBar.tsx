@@ -10,8 +10,6 @@ import "./SideBar.scss";
 const SideBar = (): JSX.Element => {
   const path = window.location.pathname;
 
-  console.log(path);
-
   return (
     <div className="sideBar">
       <div>

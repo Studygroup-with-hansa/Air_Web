@@ -1,6 +1,5 @@
 .pageTemplate {
   height: 100vh;
-  background-color: var(--backGround);
 
   &-sideBar {
     position: fixed;
@@ -9,6 +8,5 @@
   }
   &-content {
     width: 100%;
-    height: 420px;
   }
 }
