@@ -5,19 +5,26 @@
 
   &-header {
     display: flex;
+    justify-content: space-between;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 25px;
 
-    span {
+    &-text {
       font-size: 12px;
       font-weight: 500;
       margin: 10px 0 0 10px;
       color: var(--red);
     }
+    &-toggle {
+      float: left;
+      font-size: 16px;
+      font-weight: 500;
+      margin: 3px 10px 0 0;
+    }
   }
   &-list {
-    height: 80vh;
+    height: 83vh;
     border-radius: 10px;
     border: 1px solid var(--stroke);
     padding: 0 35px;
@@ -36,21 +43,9 @@
         color: var(--subText);
         font-weight: bold;
       }
-      &-rank {
-        width: 10%;
-      }
-      &-name {
-        width: 20%;
-      }
-      &-week {
-        width: 50%;
-      }
-      &-time {
-        width: 20%;
-      }
     }
     &-content {
-      height: 70vh;
+      height: 60vh;
       overflow: scroll;
     }
   }

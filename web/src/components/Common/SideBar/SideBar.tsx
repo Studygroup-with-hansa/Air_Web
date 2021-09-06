@@ -1,10 +1,7 @@
-import home from "assets/home.svg";
 import stat from "assets/stat.svg";
-import calender from "assets/calender.svg";
-import checkList from "assets/checkList.svg";
-import badge from "assets/badge.svg";
-import { FiLogOut } from "react-icons/fi";
-
+import post from "assets/post.svg";
+import profile from "assets/profile.svg";
+import setting from "assets/setting.svg";
 import "./SideBar.scss";
 
 const SideBar = (): JSX.Element => {
@@ -13,37 +10,29 @@ const SideBar = (): JSX.Element => {
   return (
     <div className="sideBar">
       <div>
-        <img className={path === "/" ? "isMain" : ""} src={home} alt="home" />
+        <img className={path === "/" ? "isMain" : ""} src={stat} alt="stat" />
       </div>
       <div>
         <img
-          className={path === "/stat" ? "isMain" : ""}
-          src={stat}
-          alt="stat"
+          className={path === "/post" ? "isMain" : ""}
+          src={post}
+          alt="post"
         />
       </div>
       <div>
         <img
-          className={path === "/calender" ? "isMain" : ""}
-          src={calender}
-          alt="calender"
+          className={path === "/profile" ? "isMain" : ""}
+          src={profile}
+          alt="profile"
         />
       </div>
       <div>
         <img
-          className={path === "/checkList" ? "isMain" : ""}
-          src={checkList}
-          alt="checkList"
+          className={path === "/setting" ? "isMain" : ""}
+          src={setting}
+          alt="setting"
         />
       </div>
-      <div>
-        <img
-          className={path === "/badge" ? "isMain" : ""}
-          src={badge}
-          alt="badge"
-        />
-      </div>
-      {/* <FiLogOut /> */}
     </div>
   );
 };

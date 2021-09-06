@@ -1,5 +1,6 @@
 import { IMainListTypes } from "../../../types/mainList.types";
 import MainListItem from "./MainListItem";
+import Crown from "components/Common/Svg/Crown";
 
 import "./MainList.scss";
 
@@ -10,9 +11,39 @@ const MainList = ({
   time,
   isMine,
 }: IMainListTypes): JSX.Element => {
+  let rankStyle = "";
+  switch (rank) {
+    case "1":
+      rankStyle = "#FFD900";
+      break;
+    case "2":
+      rankStyle = "#a3a3a3";
+      break;
+    case "3":
+      rankStyle = "#cd7f32";
+      break;
+    default:
+      rankStyle = "";
+      break;
+  }
   return (
     <div className={isMine ? "mainList isMine" : "mainList"}>
-      <div className="mainList-rank">{rank}</div>
+      <div className="mainList-rank">
+        <div
+          style={
+            rank === "1"
+              ? { border: `1px solid ${rankStyle}` }
+              : rank === "2"
+              ? { border: `1px solid ${rankStyle}` }
+              : rank === "3"
+              ? { border: `1px solid ${rankStyle}` }
+              : {}
+          }
+        >
+          {rank}
+        </div>
+        <Crown props={rankStyle} />
+      </div>
       <div className="mainList-name">{name}</div>
       <div className="mainList-week">
         {week.map((data) => (

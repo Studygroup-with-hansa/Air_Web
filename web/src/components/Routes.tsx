@@ -5,10 +5,9 @@ const Routes = (): JSX.Element => {
   return (
     <Switch>
       <Route exact path="/" component={MainPage} />
-      {/* <Route exact path="/stat" component={statPage} />
-      <Route exact path="/calender" component={calenderPage} />
-      <Route exact path="/checkList" component={checkListPage} />
-      <Route exact path="/badge" component={badgePage} /> */}
+      {/* <Route exact path="/post" component={postPage} />
+      <Route exact path="/profile" component={profilePage} />
+      <Route exact path="/setting" component={settingPage} /> */}
     </Switch>
   );
 };
