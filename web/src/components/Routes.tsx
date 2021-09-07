@@ -1,13 +1,14 @@
 import { Route, Switch } from "react-router-dom";
-import MainPage from "../pages/Main/MainPage";
+import PostPage from "pages/Post";
+import MainPage from "pages/Main/MainPage";
 
 const Routes = (): JSX.Element => {
   return (
     <Switch>
       <Route exact path="/" component={MainPage} />
-      {/* <Route exact path="/post" component={postPage} />
-      <Route exact path="/profile" component={profilePage} />
-      <Route exact path="/setting" component={settingPage} /> */}
+      <Route exact path="/post" component={PostPage} />
+      {/* <Route exact path="/profile" component={profilePage} /> */}
+      {/* <Route exact path="/setting" component={settingPage} /> */}
     </Switch>
   );
 };

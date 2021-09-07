@@ -10,7 +10,6 @@ const Main = (): JSX.Element => {
   const [isTrue, setIsTrue] = useState(false);
   const handleToggle = () => {
     setIsTrue(isTrue ? false : true);
-    console.log(isTrue);
   };
 
   return (
