@@ -16,11 +16,15 @@
       margin: 10px 0 0 10px;
       color: var(--red);
     }
-    &-toggle {
-      float: left;
+    &-friend {
       font-size: 16px;
       font-weight: 500;
       margin: 3px 10px 0 0;
+      cursor: pointer;
+    }
+    &-icon {
+      float: right;
+      margin-left: 5px;
     }
   }
   &-list {

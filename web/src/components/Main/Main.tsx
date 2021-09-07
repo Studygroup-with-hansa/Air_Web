@@ -1,9 +1,18 @@
+import { useState } from "react";
+import { BsPeopleFill } from "react-icons/bs";
+import useMainList from "../../hooks/main/useMainList";
 import MainList from "./MainList";
 
 import "./Main.scss";
-import Toggle from "components/Common/Button/Toggle";
 
 const Main = (): JSX.Element => {
+  const { EveryMainListDumi, friendsMainListDumi } = useMainList();
+  const [isTrue, setIsTrue] = useState(false);
+  const handleToggle = () => {
+    setIsTrue(isTrue ? false : true);
+    console.log(isTrue);
+  };
+
   return (
     <div className="main">
       <div className="main-header">
@@ -13,9 +22,17 @@ const Main = (): JSX.Element => {
             일주일 간 공부 시간을 기준으로 합니다.
           </span>
         </div>
-        <div>
-          <span className="main-header-toggle">내 친구</span>
-          <Toggle />
+        <div className="main-header-friend" onClick={handleToggle}>
+          <span>내 친구</span>
+          <span className="main-header-icon">
+            <BsPeopleFill
+              style={
+                isTrue
+                  ? { fontSize: "30px", marginTop: "-5px", color: "#5f79d3" }
+                  : { fontSize: "30px", marginTop: "-5px", color: "#cccccc" }
+              }
+            />
+          </span>
         </div>
       </div>
       <div className="main-list">
@@ -33,72 +50,32 @@ const Main = (): JSX.Element => {
           isMine={true}
         />
         <div className="main-list-content">
-          <MainList
-            rank="1"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="2"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="3"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="4"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="5"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="6"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="7"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="8"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="9"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="10"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
-          <MainList
-            rank="11"
-            name="박상아"
-            week={[10, 20, 50, 70, 80, 90, 100]}
-            time="63H 24M 02S"
-          />
+          {isTrue
+            ? friendsMainListDumi.map((data) => {
+                return (
+                  <>
+                    <MainList
+                      rank={data.rank}
+                      name={data.name}
+                      week={data.week}
+                      time={data.time}
+                    />
+                  </>
+                );
+              })
+            : EveryMainListDumi.map((data) => {
+                return (
+                  <>
+                    <MainList
+                      rank={data.rank}
+                      name={data.name}
+                      week={data.week}
+                      time={data.time}
+                    />
+                  </>
+                );
+              })}
+          {}
         </div>
       </div>
     </div>

@@ -17,10 +17,10 @@ const MainList = ({
       rankStyle = "#FFD900";
       break;
     case "2":
-      rankStyle = "#a3a3a3";
+      rankStyle = "#c0c0c0";
       break;
     case "3":
-      rankStyle = "#cd7f32";
+      rankStyle = "#f5b87c";
       break;
     default:
       rankStyle = "";
