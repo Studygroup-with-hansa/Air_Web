@@ -1,13 +1,45 @@
 .mainList {
+  display: flex;
   width: 100%;
-  padding: 15px 25px 15px 130px;
+  height: 72px;
+  padding: 0 40px;
+  justify-content: center;
+  cursor: pointer;
 
-  &-title {
+  div {
     display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    font-size: 20px;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+  }
+  &-rank {
+    width: 10%;
+
+    div {
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+    }
+  }
+  &-name {
+    width: 20%;
+    font-weight: 500;
+  }
+  &-week {
+    width: 50%;
+  }
+  &-time {
+    width: 20%;
+  }
+  &:hover {
+    background-color: #f6f6f6;
+  }
+}
+
+.isMine {
+  border-bottom: 1px solid var(--stroke);
+
+  &:hover {
+    background-color: var(--white);
+    cursor: auto;
   }
 }

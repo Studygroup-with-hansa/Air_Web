@@ -1,51 +1,55 @@
-import menu from "assets/hamburger.svg";
-import home from "assets/home.svg";
 import stat from "assets/stat.svg";
-import calender from "assets/calender.svg";
-import checkList from "assets/checkList.svg";
-import badge from "assets/badge.svg";
+import post from "assets/post.svg";
+import profile from "assets/profile.svg";
+import setting from "assets/setting.svg";
+import { useCallback } from "react";
+import { useHistory } from "react-router-dom";
 
 import "./SideBar.scss";
 
 const SideBar = (): JSX.Element => {
+  const history = useHistory();
   const path = window.location.pathname;
 
-  console.log(path);
+  const handleIcon = useCallback(
+    (url: string) => {
+      history.push(url);
+    },
+    [history]
+  );
 
   return (
     <div className="sideBar">
       <div>
-        <img className="isMain" src={menu} alt="menu" />
-      </div>
-      <div>
-        <img className={path === "/" ? "isMain" : ""} src={home} alt="home" />
-      </div>
-      <div>
         <img
-          className={path === "/stat" ? "isMain" : ""}
+          className={path === "/" ? "isMain" : ""}
+          onClick={() => handleIcon("/")}
           src={stat}
           alt="stat"
         />
       </div>
       <div>
         <img
-          className={path === "/calender" ? "isMain" : ""}
-          src={calender}
-          alt="calender"
+          className={path === "/post" ? "isMain" : ""}
+          onClick={() => handleIcon("/post")}
+          src={post}
+          alt="post"
         />
       </div>
       <div>
         <img
-          className={path === "/checkList" ? "isMain" : ""}
-          src={checkList}
-          alt="checkList"
+          className={path === "/profile" ? "isMain" : ""}
+          onClick={() => handleIcon("/profile")}
+          src={profile}
+          alt="profile"
         />
       </div>
       <div>
         <img
-          className={path === "/badge" ? "isMain" : ""}
-          src={badge}
-          alt="badge"
+          className={path === "/setting" ? "isMain" : ""}
+          onClick={() => handleIcon("/setting")}
+          src={setting}
+          alt="setting"
         />
       </div>
     </div>
