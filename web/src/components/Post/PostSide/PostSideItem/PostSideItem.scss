@@ -1,0 +1,26 @@
+.postSideItem {
+  float: left;
+  width: 48%;
+  margin-bottom: 15px;
+  cursor: pointer;
+
+  &-img {
+    width: 100%;
+
+    &-up {
+      margin-bottom: -6px;
+    }
+    img {
+      width: 50%;
+      border: 1px solid var(--stroke);
+    }
+  }
+  &-name {
+    color: var(--subText);
+    text-align: center;
+  }
+}
+
+.isFirst {
+  margin-right: 8px;
+}
