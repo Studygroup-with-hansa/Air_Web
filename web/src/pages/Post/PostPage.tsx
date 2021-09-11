@@ -8,7 +8,6 @@ const PostPage = () => {
       <PageTemplate>
         <Post />
       </PageTemplate>
-      <Footer />
     </>
   );
 };

@@ -8,7 +8,6 @@ const MainPage = (): JSX.Element => {
       <PageTemplate>
         <Main />
       </PageTemplate>
-      <Footer />
     </>
   );
 };
