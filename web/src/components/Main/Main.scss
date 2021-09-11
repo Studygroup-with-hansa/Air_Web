@@ -52,5 +52,8 @@
       height: 60vh;
       overflow: scroll;
     }
+    &-content::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
