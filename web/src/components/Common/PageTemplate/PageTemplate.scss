@@ -1,10 +1,12 @@
 .pageTemplate {
   height: 100vh;
+  background-color: var(--backGround);
+  overflow-y: scroll;
 
   &-sideBar {
     position: fixed;
     width: 100px;
-    height: 100vh;
+    height: 100%;
   }
   &-content {
     width: 100%;
