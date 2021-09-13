@@ -1,4 +1,4 @@
-import { IMainListTypes } from "../../../types/mainList.types";
+import { IMainListTypes } from "types/mainList.types";
 import MainListItem from "./MainListItem";
 import Crown from "components/Common/Svg/Crown";
 

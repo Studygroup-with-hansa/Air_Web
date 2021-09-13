@@ -1,16 +1,63 @@
 .signIn {
   width: 350px;
-  margin: 40px auto;
-  // background-color: coral;
+  margin: 150px auto;
 
+  button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--main);
+  }
   &-logo {
     width: 50px;
-    margin: 20px auto;
+    margin: 50px auto;
   }
   &-content {
     width: 100%;
     height: 365px;
-    border: 1px solid #d9dfe5;
+    padding: 25px;
+    border: 1px solid var(--darkStroke);
+    border-radius: 5px;
     background-color: var(--backGround);
+
+    input {
+      width: 80%;
+      margin: 5px 5px 25px 5px;
+      padding: 5px;
+      border: none;
+      border-bottom: 1px solid var(--darkStroke);
+      background: none;
+    }
+    &-input {
+      width: 95% !important;
+    }
+    &-button {
+      button {
+        width: 100%;
+        margin-top: 100px;
+        padding: 10px;
+        opacity: 70%;
+        transition: 0.5s;
+      }
+      button:hover {
+        opacity: 100%;
+      }
+      div {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 10px;
+
+        span {
+          color: var(--main);
+          cursor: pointer;
+        }
+        span:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }

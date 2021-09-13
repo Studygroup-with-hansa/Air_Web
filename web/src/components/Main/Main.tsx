@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BsPeopleFill } from "react-icons/bs";
-import useMainList from "../../hooks/main/useMainList";
+import useMainList from "hooks/main/useMainList";
 import MainList from "./MainList";
 
 import "./Main.scss";
