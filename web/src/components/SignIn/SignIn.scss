@@ -10,6 +10,7 @@
     color: var(--white);
     font-weight: bold;
     cursor: pointer;
+    transition: 0.5s;
     background-color: var(--main);
   }
   &-content {
@@ -32,11 +33,12 @@
     }
     input {
       width: 95%;
-      margin: 5px 5px 25px 5px;
+      margin: 5px;
       padding: 5px;
       border: none;
       border-bottom: 1px solid var(--darkStroke);
       background: none;
+      transition: 0.5s;
     }
     &-input {
       width: 80% !important;
@@ -67,4 +69,20 @@
       }
     }
   }
+}
+
+.isEmpty {
+  opacity: 50%;
+  cursor: default !important;
+}
+.info {
+  margin: 0 0 5px 5px;
+  font-size: 12px !important;
+  color: var(--red);
+}
+.infotext {
+  height: 14px;
+  margin: 0 0 5px 5px;
+  font-size: 12px !important;
+  color: var(--red);
 }
