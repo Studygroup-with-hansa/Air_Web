@@ -4,7 +4,7 @@ import send from "assets/send.svg";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { VscComment } from "react-icons/vsc";
 import { AiOutlineShareAlt } from "react-icons//ai";
-import Chart from "../../../Common/Chart/Chart";
+import Chart from "components/Common/Chart";
 
 import "./PostContentItem.scss";
 
@@ -28,7 +28,17 @@ const PostContentItem = (): JSX.Element => {
         </div>
       </div>
       <div className="postContentItem-contents">
-        <Chart />
+        <div className="postContentItem-contents-chart">
+          <div className="postContentItem-contents-chart-time">
+            <div className="postContentItem-contents-chart-time-date">
+              2021.09.14
+            </div>
+            <div>13H 23M 03S</div>
+          </div>
+          <div className="postContentItem-contents-chart-item">
+            <Chart />
+          </div>
+        </div>
         <div>content</div>
       </div>
       <div>
