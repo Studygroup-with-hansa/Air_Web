@@ -6,19 +6,19 @@ import "./SignIn.scss";
 
 const Sign = (): JSX.Element => {
   const [isEmpty, setIsEmpty] = useState<string>("");
-  let text: string = "";
   const history = useHistory();
-  const handleButton = useCallback(() => {
-    history.push("/signup");
-  }, []);
   const onChangeButton = (e: ChangeEvent<HTMLInputElement>) => {
     setIsEmpty(e.target.value);
   };
   const onClickButton = useCallback(() => {
-    !isEmpty ? console.log("isEmpty") : console.log("!isEmpty");
-    document.getElementsByClassName("info")[0].childNodes[0].nodeValue =
-      "전송했습니다 5분 안에 코드를 입력해주세요";
+    !isEmpty
+      ? console.log("isEmpty")
+      : (document.getElementsByClassName("info")[0].childNodes[0].nodeValue =
+          "전송했습니다 5분 안에 코드를 입력해주세요");
   }, [isEmpty]);
+  const handleButton = useCallback(() => {
+    history.push("/signup");
+  }, []);
 
   return (
     <>
@@ -52,11 +52,7 @@ const Sign = (): JSX.Element => {
             <input type="text" placeholder="인증 코드를 입력해주세요" />
           </div>
           <div className="signIn-content-button">
-            <button>로그인</button>
-            <div>
-              회원이 아니신가요?
-              <span onClick={handleButton}> 회원가입하기</span>
-            </div>
+            <button onClick={handleButton}>로그인</button>
           </div>
         </div>
       </div>

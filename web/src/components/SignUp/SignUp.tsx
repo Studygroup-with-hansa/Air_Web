@@ -1,8 +1,17 @@
-import { useCallback } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
+import defaultProfile from "assets/defaultProfile.svg";
+import addImg from "assets/addImg.svg";
 
 const SignUp = (): JSX.Element => {
+  const [fileUrl, setFileUrl] = useState<any>(null);
   const history = useHistory();
+
+  const inputImage = useCallback((event) => {
+    const imageFile = event.target.files[0];
+    const imageUrl = URL.createObjectURL(imageFile);
+    setFileUrl(imageUrl);
+  }, []);
   const handleButton = useCallback(() => {
     history.push("/signin");
   }, []);
@@ -12,22 +21,32 @@ const SignUp = (): JSX.Element => {
       <div className="signIn">
         <div className="signIn-content">
           <div>
-            <div className="signIn-content-title">회원가입</div>
+            <div className="signIn-content-title">프로필 설정</div>
+            <div className="signIn-content-image">
+              <img
+                className="signIn-content-image-img"
+                src={!fileUrl ? defaultProfile : fileUrl}
+                alt="defaultProfile"
+              />
+              <label
+                className="signIn-content-image-button"
+                htmlFor="input-file"
+              >
+                <img src={addImg} alt="" />
+              </label>
+              <input
+                type="file"
+                id="input-file"
+                style={{ display: "none" }}
+                accept="image/*"
+                onChange={inputImage}
+              />
+            </div>
             <div>닉네임</div>
-            <input
-              style={{ marginBottom: 24 }}
-              type="text"
-              placeholder="닉네임을 입력해주세요"
-            />
-            <div>이메일</div>
-            <input type="text" placeholder="이메일을 입력해주세요" />
+            <input type="text" placeholder="닉네임을 입력해주세요" />
           </div>
           <div className="signIn-content-button">
-            <button>회원가입</button>
-            <div>
-              회원이신가요?
-              <span onClick={handleButton}> 로그인하기</span>
-            </div>
+            <button onClick={handleButton}>저장</button>
           </div>
         </div>
       </div>
