@@ -4,7 +4,7 @@ import defaultProfile from "assets/defaultProfile.svg";
 import addImg from "assets/addImg.svg";
 
 const SignUp = (): JSX.Element => {
-  const [fileUrl, setFileUrl] = useState<any>(null);
+  const [fileUrl, setFileUrl] = useState<null | string>(null);
   const history = useHistory();
 
   const inputImage = useCallback((event) => {
@@ -26,7 +26,7 @@ const SignUp = (): JSX.Element => {
               <img
                 className="signIn-content-image-img"
                 src={!fileUrl ? defaultProfile : fileUrl}
-                alt="defaultProfile"
+                alt="profile"
               />
               <label
                 className="signIn-content-image-button"
