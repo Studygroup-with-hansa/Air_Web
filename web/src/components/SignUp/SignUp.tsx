@@ -38,7 +38,7 @@ const SignUp = (): JSX.Element => {
                 type="file"
                 id="input-file"
                 style={{ display: "none" }}
-                accept="image/*"
+                accept=".jpeg, .jpg, .png"
                 onChange={inputImage}
               />
             </div>
