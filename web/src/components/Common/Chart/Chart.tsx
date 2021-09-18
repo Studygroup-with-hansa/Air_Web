@@ -1,7 +1,5 @@
 import { ResponsivePie } from "@nivo/pie";
 
-import "./Chart.scss";
-
 const Chart = (): JSX.Element => {
   const data = [
     {
@@ -31,7 +29,7 @@ const Chart = (): JSX.Element => {
         colors={(data) => data.data.color}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
-        padAngle={0.7}
+        padAngle={2}
         enableArcLinkLabels={false}
         enableArcLabels={false}
         legends={[

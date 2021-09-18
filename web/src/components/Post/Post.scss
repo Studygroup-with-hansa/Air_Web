@@ -5,12 +5,14 @@
   &-content {
     float: left;
     width: 80%;
+    padding-bottom: 25px;
   }
   &-side {
     position: fixed;
     top: 0;
     right: 0;
     width: 20%;
+    z-index: 11;
   }
 }
 .guard {
