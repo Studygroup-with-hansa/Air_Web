@@ -14,6 +14,7 @@ const Post = (): JSX.Element => {
       <div className="post-side">
         <PostSide />
       </div>
+      <div className="guard"></div>
     </div>
   );
 };

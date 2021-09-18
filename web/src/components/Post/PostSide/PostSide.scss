@@ -1,8 +1,8 @@
 .postSide {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding: 25px;
-  border: 1px solid var(--stroke);
+  border-left: 1px solid var(--stroke);
   background-color: var(--white);
   overflow-y: scroll;
 

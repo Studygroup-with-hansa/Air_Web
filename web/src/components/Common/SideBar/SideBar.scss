@@ -3,7 +3,7 @@
   height: 100%;
   padding: 50px;
   background-color: var(--white);
-  border: 1px solid var(--stroke);
+  border-right: 1px solid var(--stroke);
 
   div {
     display: flex;
@@ -14,8 +14,6 @@
     margin-bottom: 50px;
     opacity: 50%;
     cursor: pointer;
-  }
-  &-logOut {
   }
 }
 
