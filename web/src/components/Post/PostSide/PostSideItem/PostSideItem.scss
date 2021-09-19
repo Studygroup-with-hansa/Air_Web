@@ -1,7 +1,7 @@
 .postSideItem {
   float: left;
-  width: 48%;
-  margin-bottom: 15px;
+  width: calc(48% - 10px);
+  margin: 0 10px 15px 0;
   cursor: pointer;
 
   &-img {
@@ -19,8 +19,4 @@
     color: var(--subText);
     text-align: center;
   }
-}
-
-.isFirst {
-  margin-right: 8px;
 }

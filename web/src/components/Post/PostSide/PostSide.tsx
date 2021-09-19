@@ -6,19 +6,22 @@ const PostSide = (): JSX.Element => {
     <div className="postSide">
       <div className="postSide-title">내 그룹</div>
       <div className="postSide-content">
-        <PostSideItem isFirst={true} />
         <PostSideItem />
-        <PostSideItem isFirst={true} />
         <PostSideItem />
-        <PostSideItem isFirst={true} />
         <PostSideItem />
-        <PostSideItem isFirst={true} />
         <PostSideItem />
-        <PostSideItem isFirst={true} />
         <PostSideItem />
-        <PostSideItem isFirst={true} />
         <PostSideItem />
-        <PostSideItem isFirst={true} />
+        <PostSideItem />
+        <PostSideItem />
+        <PostSideItem />
+        <PostSideItem />
+        <PostSideItem />
+        <PostSideItem />
+        <PostSideItem />
+        <PostSideItem />
+        <PostSideItem />
+        <PostSideItem />
         <PostSideItem />
       </div>
     </div>
