@@ -16,6 +16,10 @@ const PostSide = (): JSX.Element => {
         <PostSideItem />
         <PostSideItem isFirst={true} />
         <PostSideItem />
+        <PostSideItem isFirst={true} />
+        <PostSideItem />
+        <PostSideItem isFirst={true} />
+        <PostSideItem />
       </div>
     </div>
   );
