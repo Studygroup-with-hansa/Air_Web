@@ -25,7 +25,7 @@ const SideBar = (): JSX.Element => {
           className={path === "/" ? "isMain" : ""}
           onClick={() => handleIcon("/")}
           src={stat}
-          alt="stat"
+          alt="rank"
         />
       </div>
       <div>
@@ -34,6 +34,15 @@ const SideBar = (): JSX.Element => {
           onClick={() => handleIcon("/post")}
           src={post}
           alt="post"
+        />
+      </div>
+      <div>
+        <img
+          style={{ transform: "rotate(90deg)" }}
+          className={path === "/stat" ? "isMain" : ""}
+          onClick={() => handleIcon("/stat")}
+          src={stat}
+          alt="stat"
         />
       </div>
       <div>
