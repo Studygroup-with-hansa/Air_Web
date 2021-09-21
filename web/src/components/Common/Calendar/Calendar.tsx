@@ -1,10 +1,12 @@
 import moment from "moment";
 import { useCallback, useState } from "react";
+import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
 
 const Calendar = (): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
+  const [activeDate, setActiveDate] = useState<string>("");
   const today = getMoment;
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -12,6 +14,9 @@ const Calendar = (): JSX.Element => {
       ? 53
       : today.clone().endOf("month").week();
 
+  const handleDate = useCallback((date: string) => {
+    setActiveDate(date);
+  }, []);
   const calendarArr = () => {
     let result: JSX.Element[] = [];
     let week = firstWeek;
@@ -28,21 +33,21 @@ const Calendar = (): JSX.Element => {
                 .startOf("week")
                 .add(index, "day");
 
-              if (moment().format("YYYYMMDD") === days.format("YYYYMMDD")) {
+              if (days.format("MM") !== today.format("MM")) {
                 return (
-                  <td key={index} style={{ backgroundColor: "red" }}>
-                    <span>{days.format("D")}</span>
-                  </td>
-                );
-              } else if (days.format("MM") !== today.format("MM")) {
-                return (
-                  <td key={index} style={{ backgroundColor: "gray" }}>
+                  <td key={index} className="deactivate">
                     <span>{days.format("D")}</span>
                   </td>
                 );
               } else {
                 return (
-                  <td key={index}>
+                  <td
+                    key={index}
+                    onClick={() => handleDate(days.format("D"))}
+                    className={
+                      activeDate === days.format("D") ? "active date" : "date"
+                    }
+                  >
                     <span>{days.format("D")}</span>
                   </td>
                 );
@@ -57,21 +62,22 @@ const Calendar = (): JSX.Element => {
   return (
     <div className="calendar">
       <div className="calendar-control">
-        <button
+        <img
+          src={arrow}
+          alt="arrow"
           onClick={() => {
             setMoment(getMoment.clone().subtract(1, "month"));
           }}
-        >
-          &lt;
-        </button>
-        <span>{today.format("YYYY년 M월")}</span>
-        <button
+        />
+        <span>{today.format("YYYY년 MM월")}</span>
+        <img
+          src={arrow}
+          alt="arrow"
+          style={{ transform: "rotate(180deg)" }}
           onClick={() => {
             setMoment(getMoment.clone().add(1, "month"));
           }}
-        >
-          &gt;
-        </button>
+        />
       </div>
       <table>
         <tbody>{calendarArr()}</tbody>
