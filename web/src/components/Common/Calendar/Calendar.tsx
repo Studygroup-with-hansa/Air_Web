@@ -6,7 +6,7 @@ import "./Calendar.scss";
 
 const Calendar = (): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
-  const [activeDate, setActiveDate] = useState<string>("");
+  const [activeDate, setActiveDate] = useState<string>(""); //recoil로 저장
   const today = getMoment;
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =

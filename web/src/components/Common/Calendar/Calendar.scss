@@ -1,15 +1,18 @@
 .calendar {
-  width: 50%;
+  width: 100%;
   padding: 25px;
 
   &-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 15px;
 
     img {
       cursor: pointer;
     }
     span {
-      margin: 0 5px;
+      margin: 0 25px;
     }
   }
   table {

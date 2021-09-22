@@ -1,20 +1,23 @@
-import "./Stat.scss";
 import { useCallback, useState } from "react";
-import MonthStat from "./MonthStat";
-import WeekStat from "./WeekStat";
-import DayStat from "./DayStat";
+import MonthStat from "./StatItem/MonthStat";
+import WeekStat from "./StatItem/WeekStat";
+import DayStat from "./StatItem/DayStat";
 
-const component: any = {
-  0: <MonthStat />,
-  1: <WeekStat />,
-  2: <DayStat />,
-};
+import "./Stat.scss";
 
 const Stat = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<number>(0);
+
   const handleMenu = useCallback((id: number) => {
     setActiveTab(id);
   }, []);
+
+  const component: any = {
+    0: <MonthStat />,
+    1: <WeekStat />,
+    2: <DayStat />,
+  };
+
   return (
     <div className="stat">
       <div className="stat-tab">
