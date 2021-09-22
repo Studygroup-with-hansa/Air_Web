@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import MonthStat from "./StatItem/MonthStat";
 import WeekStat from "./StatItem/WeekStat";
 import DayStat from "./StatItem/DayStat";
+import StatItem from "./StatItem/StatItem";
 
 import "./Stat.scss";
 
@@ -13,9 +14,9 @@ const Stat = (): JSX.Element => {
   }, []);
 
   const component: any = {
-    0: <MonthStat />,
-    1: <WeekStat />,
-    2: <DayStat />,
+    0: <StatItem />,
+    1: <StatItem />,
+    2: <StatItem />,
   };
 
   return (
