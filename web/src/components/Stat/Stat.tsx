@@ -14,9 +14,9 @@ const Stat = (): JSX.Element => {
   }, []);
 
   const component: any = {
-    0: <StatItem />,
-    1: <StatItem />,
-    2: <StatItem />,
+    0: <StatItem type={"month"} />,
+    1: <StatItem type={"week"} />,
+    2: <StatItem type={"day"} />,
   };
 
   return (
