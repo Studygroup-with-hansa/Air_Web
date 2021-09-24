@@ -1,13 +1,15 @@
 import { useRecoilValue } from "recoil";
 import Calendar from "components/Common/Calendar";
 import Chart from "components/Common/Chart";
-import { activeTabState } from "recoil/stat";
+import { activeTabState, statDateState } from "recoil/stat";
 
 import "./StatItem.scss";
 
 const StatItem = () => {
   //범위 설정하는 함수 생성 (타입 별로 다르게) hooks 따로 만들어도 될 듯
   const activeTab = useRecoilValue(activeTabState);
+  const activeDate = useRecoilValue(statDateState);
+
   return (
     <div className="statItem">
       <div className="statItem-left">
@@ -18,7 +20,7 @@ const StatItem = () => {
           <div>{activeTab}</div>
         </div>
       </div>
-      <div className="statItem-right">right</div>
+      <div className="statItem-right">{activeDate.activeDate}</div>
     </div>
   );
 };

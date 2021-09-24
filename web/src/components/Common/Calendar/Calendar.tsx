@@ -3,10 +3,14 @@ import moment from "moment";
 import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
+import { useRecoilState } from "recoil";
+import { IStatDateTypes } from "types/stat.types";
+import { statDateState } from "recoil/stat";
 
 const Calendar = (): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
-  const [activeDate, setActiveDate] = useState<string>(""); //recoil로 저장
+  // const [activeDate, setActiveDate] = useState<string>(""); //recoil로 저장
+  const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
   const today = getMoment;
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -15,7 +19,7 @@ const Calendar = (): JSX.Element => {
       : today.clone().endOf("month").week();
 
   const handleDate = useCallback((date: string) => {
-    setActiveDate(date);
+    setStatDate((prevDate) => ({ ...prevDate, activeDate: date }));
   }, []);
   const calendarArr = () => {
     let result: JSX.Element[] = [];
@@ -43,9 +47,11 @@ const Calendar = (): JSX.Element => {
                 return (
                   <td
                     key={index}
-                    onClick={() => handleDate(days.format("D"))}
+                    onClick={() => handleDate(days.format("D"))} //월, 일 같이 저장하기
                     className={
-                      activeDate === days.format("D") ? "active date" : "date"
+                      statDate.activeDate === days.format("D")
+                        ? "active date"
+                        : "date"
                     }
                   >
                     <span>{days.format("D")}</span>
