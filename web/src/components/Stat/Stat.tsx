@@ -1,10 +1,10 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+import { useRecoilState } from "recoil";
 import MonthStat from "./StatItem/MonthStat";
 import WeekStat from "./StatItem/WeekStat";
 import DayStat from "./StatItem/DayStat";
 import StatItem from "./StatItem/StatItem";
-import { useRecoilState } from "recoil";
-import { activeTabState } from "../../recoil/stat";
+import { activeTabState } from "recoil/stat";
 
 import "./Stat.scss";
 
@@ -14,12 +14,6 @@ const Stat = (): JSX.Element => {
   const handleMenu = useCallback((id: number) => {
     setActiveTab(id);
   }, []);
-
-  const component: any = {
-    0: <StatItem type="month" />,
-    1: <StatItem type="week" />,
-    2: <StatItem type="day" />,
-  };
 
   return (
     <div className="stat">
@@ -49,7 +43,9 @@ const Stat = (): JSX.Element => {
           일간
         </div>
       </div>
-      <div className="stat-content">{component[activeTab]}</div>
+      <div className="stat-content">
+        <StatItem />
+      </div>
     </div>
   );
 };

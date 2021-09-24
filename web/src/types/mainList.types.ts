@@ -1,5 +1,3 @@
-import { Stream } from "stream";
-
 export interface IMainListTypes {
   rank: string;
   name: string;

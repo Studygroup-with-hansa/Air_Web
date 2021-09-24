@@ -1,5 +1,5 @@
-import moment from "moment";
 import { useCallback, useState } from "react";
+import moment from "moment";
 import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
