@@ -3,20 +3,22 @@ import MonthStat from "./StatItem/MonthStat";
 import WeekStat from "./StatItem/WeekStat";
 import DayStat from "./StatItem/DayStat";
 import StatItem from "./StatItem/StatItem";
+import { useRecoilState } from "recoil";
+import { activeTabState } from "../../recoil/stat";
 
 import "./Stat.scss";
 
 const Stat = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useState<number>(0);
+  const [activeTab, setActiveTab] = useRecoilState<number>(activeTabState);
 
   const handleMenu = useCallback((id: number) => {
     setActiveTab(id);
   }, []);
 
   const component: any = {
-    0: <StatItem type={"month"} />,
-    1: <StatItem type={"week"} />,
-    2: <StatItem type={"day"} />,
+    0: <StatItem type="month" />,
+    1: <StatItem type="week" />,
+    2: <StatItem type="day" />,
   };
 
   return (
