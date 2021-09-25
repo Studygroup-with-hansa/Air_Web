@@ -9,8 +9,9 @@ import { statDateState } from "recoil/stat";
 
 const Calendar = (): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
-  // const [activeDate, setActiveDate] = useState<string>(""); //recoil로 저장
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
+
+  let dateArray: string[] = [];
   const today = getMoment;
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -20,6 +21,8 @@ const Calendar = (): JSX.Element => {
 
   const handleDate = useCallback((date: string) => {
     setStatDate((prevDate) => ({ ...prevDate, activeDate: date }));
+    dateArray = date.split(".");
+    console.log(dateArray);
   }, []);
   const calendarArr = () => {
     let result: JSX.Element[] = [];
@@ -47,9 +50,9 @@ const Calendar = (): JSX.Element => {
                 return (
                   <td
                     key={index}
-                    onClick={() => handleDate(days.format("D"))} //월, 일 같이 저장하기
+                    onClick={() => handleDate(days.format("YYYY.MM.DD"))} //월, 일 같이 저장하기
                     className={
-                      statDate.activeDate === days.format("D")
+                      statDate.activeDate === days.format("YYYY.MM.DD")
                         ? "active date"
                         : "date"
                     }

@@ -15,9 +15,9 @@ const StatItem = () => {
       <div className="statItem-left">
         <Calendar />
         <div className="statItem-left-analysis">
-          <div>총 공부시간</div>
+          {/* <div>총 공부시간</div>
           <div>3H 24M 11S</div>
-          <div>{activeTab}</div>
+          <div>{activeTab}</div> */}
         </div>
       </div>
       <div className="statItem-right">{activeDate.activeDate}</div>

@@ -4,7 +4,7 @@ import MonthStat from "./StatItem/MonthStat";
 import WeekStat from "./StatItem/WeekStat";
 import DayStat from "./StatItem/DayStat";
 import StatItem from "./StatItem/StatItem";
-import { activeTabState } from "recoil/stat";
+import { activeTabState, statDateState } from "recoil/stat";
 
 import "./Stat.scss";
 
