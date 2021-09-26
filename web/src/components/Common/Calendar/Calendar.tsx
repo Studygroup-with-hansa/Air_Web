@@ -12,6 +12,7 @@ const Calendar = (): JSX.Element => {
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
 
   let dateArray: string[] = [];
+  const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -53,8 +54,8 @@ const Calendar = (): JSX.Element => {
                     onClick={() => handleDate(days.format("YYYY.MM.DD"))} //월, 일 같이 저장하기
                     className={
                       statDate.activeDate === days.format("YYYY.MM.DD")
-                        ? "active date"
-                        : "date"
+                        ? "active"
+                        : ""
                     }
                   >
                     <span>{days.format("D")}</span>
@@ -89,6 +90,15 @@ const Calendar = (): JSX.Element => {
         />
       </div>
       <table>
+        <th>
+          {dayWeek.map((data) => {
+            return (
+              <td>
+                <span>{data}</span>
+              </td>
+            );
+          })}
+        </th>
         <tbody>{calendarArr()}</tbody>
       </table>
     </div>
