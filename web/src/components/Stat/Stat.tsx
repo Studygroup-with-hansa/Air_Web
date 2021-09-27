@@ -1,8 +1,5 @@
 import { useCallback } from "react";
 import { useRecoilState } from "recoil";
-import MonthStat from "./StatItem/MonthStat";
-import WeekStat from "./StatItem/WeekStat";
-import DayStat from "./StatItem/DayStat";
 import StatItem from "./StatItem/StatItem";
 import { activeTabState, statDateState } from "recoil/stat";
 

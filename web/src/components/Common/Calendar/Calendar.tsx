@@ -11,7 +11,6 @@ const Calendar = (): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
 
-  let dateArray: string[] = [];
   const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
   const firstWeek = today.clone().startOf("month").week();
@@ -21,9 +20,11 @@ const Calendar = (): JSX.Element => {
       : today.clone().endOf("month").week();
 
   const handleDate = useCallback((date: string) => {
-    setStatDate((prevDate) => ({ ...prevDate, activeDate: date }));
-    dateArray = date.split(".");
-    console.log(dateArray);
+    setStatDate((prevDate) => ({
+      ...prevDate,
+      activeDate: date,
+      dateArray: date.split("."),
+    }));
   }, []);
   const calendarArr = () => {
     let result: JSX.Element[] = [];
