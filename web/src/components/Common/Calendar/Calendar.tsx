@@ -6,16 +6,15 @@ import { activeTabState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
-import useStatItem from "hooks/Stat/useStatItem";
 
 const Calendar = (): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
   const activeTab = useRecoilValue<number>(activeTabState);
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
-  const { dateCycle } = useStatItem();
 
   const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
+  let dateArray: string[] = [];
 
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -23,13 +22,31 @@ const Calendar = (): JSX.Element => {
       ? 53
       : today.clone().endOf("month").week();
 
+  const monthStat = useCallback(() => {
+    setStatDate((prevDate) => ({
+      ...prevDate,
+      startDate: `${statDate.dateArray[0]}.${statDate.dateArray[1]}.01`,
+      endDate: String(
+        new Date(
+          parseInt(statDate.dateArray[0]),
+          parseInt(statDate.dateArray[1]),
+          0
+        ).getDate()
+      ),
+    }));
+    console.log(statDate.startDate, statDate.endDate);
+  }, [statDate.activeDate]);
+
   const handleDate = useCallback(
     (date: string) => {
+      dateArray = date.split(".");
+
       setStatDate((prevDate) => ({
         ...prevDate,
         activeDate: date,
+        dateArray: dateArray,
       }));
-      dateCycle(activeTab);
+      monthStat();
     },
     [statDate.activeDate]
   );
