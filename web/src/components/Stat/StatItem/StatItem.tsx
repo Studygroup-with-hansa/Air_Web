@@ -22,19 +22,14 @@ const StatItem = () => {
   };
 
   const tabMenu: any = {
-    0: `${monthStatItem.startDate} ~ ${monthStatItem.endDate}`,
-    1: "주간",
-    2: "일간",
+    0: <Calendar type={"month"} />,
+    1: <Calendar type={"week"} />,
+    2: <Calendar type={"day"} />,
   };
 
   return (
     <div className="statItem">
-      <div className="statItem-left">
-        <Calendar />
-        <div className="statItem-left-analysis">
-          <div>{tabMenu[activeTab]}</div>
-        </div>
-      </div>
+      <div className="statItem-left">{tabMenu[activeTab]}</div>
       <div className="statItem-right">
         <div>{statDate.activeDate}</div>
       </div>

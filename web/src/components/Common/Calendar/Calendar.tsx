@@ -4,15 +4,18 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { IStatDateTypes } from "types/stat.types";
 import { activeTabState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
+import useStatItem from "hooks/Stat/useStatItem";
 
 import "./Calendar.scss";
 
-const Calendar = (): JSX.Element => {
+const Calendar = ({ type }: any): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
 
   const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
+
+  const { weekCycle } = useStatItem();
 
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -54,19 +57,60 @@ const Calendar = (): JSX.Element => {
                   </td>
                 );
               } else {
-                return (
-                  <td
-                    key={index}
-                    onClick={() => handleDate(days.format("YYYY.MM.DD"))}
-                    className={
-                      statDate.activeDate === days.format("YYYY.MM.DD")
-                        ? "date active"
-                        : "date"
-                    }
-                  >
-                    <span>{days.format("D")}</span>
-                  </td>
-                );
+                switch (type) {
+                  case "month":
+                    return (
+                      <td
+                        key={index}
+                        onClick={() => handleDate(days.format("YYYY.MM.DD"))}
+                        className={
+                          statDate.activeDate === days.format("YYYY.MM.DD")
+                            ? "date active"
+                            : statDate.dateArray[1] === today.format("MM")
+                            ? "date dateCycle"
+                            : "date"
+                        }
+                      >
+                        <span>{days.format("D")}</span>
+                      </td>
+                    );
+
+                  case "week":
+                    return (
+                      <td
+                        key={index}
+                        // onClick={() => handleDate(days.format("YYYY.MM.DD"))}
+                        onClick={() => {
+                          handleDate(days.format("YYYY.MM.DD"));
+                          weekCycle(statDate.dateArray[2]);
+                        }}
+                        className={
+                          statDate.activeDate === days.format("YYYY.MM.DD")
+                            ? "date active"
+                            : statDate.dateArray[1] === today.format("MM")
+                            ? "date dateCycle"
+                            : "date"
+                        }
+                      >
+                        <span>{days.format("D")}</span>
+                      </td>
+                    );
+
+                  case "day":
+                    return (
+                      <td
+                        key={index}
+                        onClick={() => handleDate(days.format("YYYY.MM.DD"))}
+                        className={
+                          statDate.activeDate === days.format("YYYY.MM.DD")
+                            ? "date active"
+                            : "date"
+                        }
+                      >
+                        <span>{days.format("D")}</span>
+                      </td>
+                    );
+                }
               }
             })}
         </tr>
