@@ -2,25 +2,42 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import Calendar from "components/Common/Calendar";
 import Chart from "components/Common/Chart";
 import { activeTabState, statDateState } from "recoil/stat";
+import { IStatDateTypes } from "types/stat.types";
 
 import "./StatItem.scss";
 
 const StatItem = () => {
-  //범위 설정하는 함수 생성 (타입 별로 다르게) hooks 따로 만들어도 될 듯
-  const activeTab = useRecoilValue(activeTabState);
-  const statDate = useRecoilValue(statDateState);
+  const activeTab = useRecoilValue<number>(activeTabState);
+  const statDate = useRecoilValue<IStatDateTypes>(statDateState);
+
+  let monthStatItem = {
+    startDate: `${statDate.dateArray[0]}.${statDate.dateArray[1]}.01`,
+    endDate: `${statDate.dateArray[0]}.${statDate.dateArray[1]}.${String(
+      new Date(
+        parseInt(statDate.dateArray[0]),
+        parseInt(statDate.dateArray[1]),
+        0
+      ).getDate()
+    )}`,
+  };
+
+  const tabMenu: any = {
+    0: `${monthStatItem.startDate} ~ ${monthStatItem.endDate}`,
+    1: "주간",
+    2: "일간",
+  };
 
   return (
     <div className="statItem">
       <div className="statItem-left">
         <Calendar />
         <div className="statItem-left-analysis">
-          <div>총 공부시간</div>
-          <div>3H 24M 11S</div>
-          <div>{activeTab}</div>
+          <div>{tabMenu[activeTab]}</div>
         </div>
       </div>
-      <div className="statItem-right">{statDate.activeDate}</div>
+      <div className="statItem-right">
+        <div>{statDate.activeDate}</div>
+      </div>
     </div>
   );
 };

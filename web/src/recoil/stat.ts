@@ -9,9 +9,7 @@ export const activeTabState = atom<number>({
 
 export const statDate: IStatDateTypes = {
   activeDate: moment().format("YYYY.MM.DD"),
-  dateArray: [],
-  startDate: "",
-  endDate: "",
+  dateArray: moment().format("YYYY.MM.DD").split("."),
 };
 
 export const statDateState = atom<IStatDateTypes>({
