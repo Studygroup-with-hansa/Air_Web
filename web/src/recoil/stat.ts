@@ -1,3 +1,4 @@
+import moment from "moment";
 import { atom } from "recoil";
 import { IStatDateTypes } from "types/stat.types";
 
@@ -7,8 +8,7 @@ export const activeTabState = atom<number>({
 });
 
 export const statDate: IStatDateTypes = {
-  activeDate: "",
-  dateArray: [],
+  activeDate: moment().format("YYYY.MM.DD"),
   startDate: "",
   endDate: "",
 };

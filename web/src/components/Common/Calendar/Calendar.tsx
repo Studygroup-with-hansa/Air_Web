@@ -1,31 +1,39 @@
 import { useCallback, useState } from "react";
 import moment from "moment";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { IStatDateTypes } from "types/stat.types";
+import { activeTabState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
-import { useRecoilState } from "recoil";
-import { IStatDateTypes } from "types/stat.types";
-import { statDateState } from "recoil/stat";
+import useStatItem from "hooks/Stat/useStatItem";
 
 const Calendar = (): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
+  const activeTab = useRecoilValue<number>(activeTabState);
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
+  const { dateCycle } = useStatItem();
 
   const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
+
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
     today.clone().endOf("month").week() === 1
       ? 53
       : today.clone().endOf("month").week();
 
-  const handleDate = useCallback((date: string) => {
-    setStatDate((prevDate) => ({
-      ...prevDate,
-      activeDate: date,
-      dateArray: date.split("."),
-    }));
-  }, []);
+  const handleDate = useCallback(
+    (date: string) => {
+      setStatDate((prevDate) => ({
+        ...prevDate,
+        activeDate: date,
+      }));
+      dateCycle(activeTab);
+    },
+    [statDate.activeDate]
+  );
+
   const calendarArr = () => {
     let result: JSX.Element[] = [];
     let week = firstWeek;
@@ -44,7 +52,7 @@ const Calendar = (): JSX.Element => {
 
               if (days.format("MM") !== today.format("MM")) {
                 return (
-                  <td key={index} className="deactivate">
+                  <td key={index} className="date deactivate">
                     <span>{days.format("D")}</span>
                   </td>
                 );
@@ -52,11 +60,11 @@ const Calendar = (): JSX.Element => {
                 return (
                   <td
                     key={index}
-                    onClick={() => handleDate(days.format("YYYY.MM.DD"))} //월, 일 같이 저장하기
+                    onClick={() => handleDate(days.format("YYYY.MM.DD"))}
                     className={
                       statDate.activeDate === days.format("YYYY.MM.DD")
-                        ? "active"
-                        : ""
+                        ? "date active"
+                        : "date"
                     }
                   >
                     <span>{days.format("D")}</span>

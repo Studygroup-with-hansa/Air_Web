@@ -5,27 +5,28 @@ import { IStatDateTypes } from "types/stat.types";
 
 const useStatItem = () => {
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
-  var monthLastDate = String(
-    new Date(
-      parseInt(statDate.dateArray[0]),
-      parseInt(statDate.dateArray[1]),
-      0
-    ).getDate()
-  );
+  const dateArray = statDate.activeDate.split(".");
 
-  const MonthStat = useCallback(() => {
+  const monthStat = useCallback(() => {
     console.log("hi");
 
     setStatDate((prevDate) => ({
       ...prevDate,
-      startDate: `${statDate.dateArray[0]}.${statDate.dateArray[1]}.01`,
-      endDate: monthLastDate,
+      startDate: `${dateArray[0]}.${dateArray[1]}.01`,
+      endDate: String(
+        new Date(parseInt(dateArray[0]), parseInt(dateArray[1]), 0).getDate()
+      ),
     }));
-  }, []);
-  const WeekStat = useCallback(() => {}, []);
+    console.log(statDate.startDate, statDate.endDate);
+  }, [statDate.activeDate]);
+  const weekStat = useCallback(() => {}, []);
   const dayStat = useCallback(() => {}, []);
 
-  return { MonthStat };
+  const dateCycle = useCallback((type: number) => {
+    type === 0 ? monthStat() : type === 1 ? weekStat() : dayStat();
+  }, []);
+
+  return { dateCycle };
 };
 
 export default useStatItem;
