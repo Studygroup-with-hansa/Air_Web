@@ -15,7 +15,7 @@ const Calendar = ({ type }: any): JSX.Element => {
   const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
 
-  const { weekCycle } = useStatItem();
+  const { isSun } = useStatItem();
 
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -79,15 +79,15 @@ const Calendar = ({ type }: any): JSX.Element => {
                     return (
                       <td
                         key={index}
-                        // onClick={() => handleDate(days.format("YYYY.MM.DD"))}
                         onClick={() => {
                           handleDate(days.format("YYYY.MM.DD"));
-                          weekCycle(statDate.dateArray[2]);
+                          isSun(days);
                         }}
                         className={
                           statDate.activeDate === days.format("YYYY.MM.DD")
                             ? "date active"
-                            : statDate.dateArray[1] === today.format("MM")
+                            : statDate.startDate <= days.format("YYYY.MM.DD") &&
+                              statDate.endDate >= days.format("YYYY.MM.DD")
                             ? "date dateCycle"
                             : "date"
                         }
