@@ -20,9 +20,7 @@ const StatItem = () => {
     <div className="statItem">
       <div className="statItem-left">{tabMenu[activeTab]}</div>
       <div className="statItem-right">
-        <div>
-          {statDate.startDate} ~ {statDate.endDate}
-        </div>
+        <div>{/* {statDate.startDate} ~ {statDate.endDate} */}</div>
       </div>
     </div>
   );
