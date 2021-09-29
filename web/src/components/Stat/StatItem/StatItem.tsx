@@ -20,7 +20,6 @@ const StatItem = () => {
     <div className="statItem">
       <div className="statItem-left">{tabMenu[activeTab]}</div>
       <div className="statItem-right">
-        <div>{statDate.activeDate}</div>
         <div>
           {statDate.startDate} ~ {statDate.endDate}
         </div>

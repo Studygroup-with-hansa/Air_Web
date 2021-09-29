@@ -1,21 +1,33 @@
 import { useCallback, useState } from "react";
-import moment from "moment";
-import { useRecoilState, useRecoilValue } from "recoil";
+import moment, { Moment } from "moment";
+import { useRecoilState } from "recoil";
 import { IStatDateTypes } from "types/stat.types";
-import { activeTabState, statDateState } from "recoil/stat";
+import { statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
-import useStatItem from "hooks/Stat/useStatItem";
 
 import "./Calendar.scss";
 
 const Calendar = ({ type }: any): JSX.Element => {
   const [getMoment, setMoment] = useState(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
+  const [weekDate, setWeekDate] = useState({
+    startDay: "",
+    endDay: "",
+  });
 
   const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
 
-  const { isSun } = useStatItem();
+  const isSun = useCallback(
+    (activeDate: Moment) => {
+      setWeekDate((prevDate) => ({
+        ...prevDate,
+        startDay: activeDate.startOf("week").format("YYYY.MM.DD"),
+        endDay: activeDate.startOf("week").add(6, "days").format("YYYY.MM.DD"),
+      }));
+    },
+    [statDate.activeDate]
+  );
 
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -62,7 +74,10 @@ const Calendar = ({ type }: any): JSX.Element => {
                     return (
                       <td
                         key={index}
-                        onClick={() => handleDate(days.format("YYYY.MM.DD"))}
+                        onClick={() => {
+                          handleDate(days.format("YYYY.MM.DD"));
+                          isSun(days);
+                        }}
                         className={
                           statDate.activeDate === days.format("YYYY.MM.DD")
                             ? "date active"
@@ -86,8 +101,8 @@ const Calendar = ({ type }: any): JSX.Element => {
                         className={
                           statDate.activeDate === days.format("YYYY.MM.DD")
                             ? "date active"
-                            : statDate.startDate <= days.format("YYYY.MM.DD") &&
-                              statDate.endDate >= days.format("YYYY.MM.DD")
+                            : weekDate.startDay <= days.format("YYYY.MM.DD") &&
+                              weekDate.endDay >= days.format("YYYY.MM.DD")
                             ? "date dateCycle"
                             : "date"
                         }
@@ -100,7 +115,10 @@ const Calendar = ({ type }: any): JSX.Element => {
                     return (
                       <td
                         key={index}
-                        onClick={() => handleDate(days.format("YYYY.MM.DD"))}
+                        onClick={() => {
+                          handleDate(days.format("YYYY.MM.DD"));
+                          isSun(days);
+                        }}
                         className={
                           statDate.activeDate === days.format("YYYY.MM.DD")
                             ? "date active"
