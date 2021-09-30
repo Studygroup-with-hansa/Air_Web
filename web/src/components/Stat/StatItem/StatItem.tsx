@@ -1,8 +1,6 @@
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import Calendar from "components/Common/Calendar";
-import Chart from "components/Common/Chart";
-import { activeTabState, dateDataState, statDateState } from "recoil/stat";
-import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
+import { activeTabState } from "recoil/stat";
 
 import "./StatItem.scss";
 
@@ -24,8 +22,11 @@ const StatItem = ({ startDate, endDate }: IStatItemTypes) => {
     <div className="statItem">
       <div className="statItem-left">{tabMenu[activeTab]}</div>
       <div className="statItem-right">
-        <div>
+        <div className="statItem-right-date">
           {startDate} ~ {endDate}
+        </div>
+        <div className="statItem-right-content">
+          <div className="statItem-right-content-totalTime">asdf</div>
         </div>
       </div>
     </div>

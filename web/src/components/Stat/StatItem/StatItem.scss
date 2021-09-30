@@ -6,5 +6,18 @@
   &-right {
     float: left;
     width: 50%;
+
+    &-date {
+      text-align: center;
+    }
+    &-content {
+      margin: 25px 10px;
+      overflow: scroll;
+
+      &-totalTime {
+        width: 50%;
+        text-align: center;
+      }
+    }
   }
 }

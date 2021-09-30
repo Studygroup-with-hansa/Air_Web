@@ -20,8 +20,6 @@ const Calendar = ({ type }: any): JSX.Element => {
   let startDate: string[] = ["", "", String(today)];
   let endDate: string[] = ["", "", String(today)];
 
-  // const addPercent = useCallback(() => {}, [statDate.activeDate]);
-
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
     today.clone().endOf("month").week() === 1
@@ -100,9 +98,18 @@ const Calendar = ({ type }: any): JSX.Element => {
         className={className}
       >
         <div className="calendar-date">{days.format("D")}</div>
-        {/* {addPercent()} */}
         <div className="calendar-percent">
-          <div className="calendar-percent-item">50%</div>
+          <div className="calendar-percent-item">
+            <div className="calendar-percent-item-bar" />
+            <div
+              style={{
+                backgroundColor: `rgb(95,121,211, ${30 + 50 * (7 / 10)}%)`,
+              }}
+              className="calendar-percent-item-text"
+            >
+              0%
+            </div>
+          </div>
         </div>
       </td>
     );
@@ -159,7 +166,7 @@ const Calendar = ({ type }: any): JSX.Element => {
           }}
         />
       </div>
-      <table className="calendar-day">
+      <table>
         <th>
           {dayWeek.map((data) => {
             return (
