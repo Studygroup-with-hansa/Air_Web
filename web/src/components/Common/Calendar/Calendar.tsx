@@ -16,11 +16,10 @@ const Calendar = ({ type }: any): JSX.Element => {
     endDay: "",
   });
   const [dateData, setDateData] = useRecoilState<IDateDataTypes>(dateDataState);
-  let startDate: string[] = ["", "", ""];
-  let endDate: string[] = ["", "", ""];
-
   const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
+  let startDate: string[] = ["", "", String(today)];
+  let endDate: string[] = ["", "", String(today)];
 
   const isSun = useCallback(
     (activeDate: Moment) => {
@@ -40,36 +39,33 @@ const Calendar = ({ type }: any): JSX.Element => {
       : today.clone().endOf("month").week();
 
   const handleDate = useCallback(
-    (date: string) => {
+    (date: Moment) => {
       setStatDate({
-        activeDate: date,
-        dateArray: date.split("."),
+        activeDate: date.format("YYYY.MM.DD"),
+        dateArray: date.format("YYYY.MM.DD").split("."),
       });
-      console.log(date);
-      // setDateData({
-      //   startDate: startDate[activeTab],
-      //   endDate: endDate[activeTab],
-      // });
-      // console.log(dateData.startDate, dateData.endDate, "hi");
+      startDate.splice(2, 1, date.format("YYYY.MM.DD"));
+      endDate.splice(2, 1, date.format("YYYY.MM.DD"));
+      startDate.splice(
+        0,
+        1,
+        moment(date).startOf("month").format("YYYY.MM.DD")
+      );
+      startDate.splice(1, 1, date.startOf("week").format("YYYY.MM.DD"));
+      endDate.splice(0, 1, moment(date).endOf("month").format("YYYY.MM.DD"));
+      endDate.splice(
+        1,
+        1,
+        date.startOf("week").add(6, "days").format("YYYY.MM.DD")
+      );
+      console.log(startDate, endDate);
+      setDateData({
+        startDate: startDate[activeTab],
+        endDate: endDate[activeTab],
+      });
     },
     [statDate.activeDate]
   );
-  const pushDate = useCallback((date: Moment) => {
-    console.log(date.format("YYYY.MM.DD"));
-    startDate.splice(2, 1, date.format("YYYY.MM.DD"));
-    endDate.splice(2, 1, date.format("YYYY.MM.DD"));
-    startDate.splice(0, 1, moment(date).startOf("month").format("YYYY.MM.DD"));
-    startDate.splice(1, 1, date.startOf("week").format("YYYY.MM.DD"));
-    endDate.splice(0, 1, moment(date).endOf("month").format("YYYY.MM.DD"));
-    endDate.splice(
-      1,
-      1,
-      date.startOf("week").add(6, "days").format("YYYY.MM.DD")
-    );
-    console.log(startDate, endDate);
-    // moment(days).endOf("month").format("YYYY.MM.DD"))
-    // weekDate.endDay
-  }, []);
 
   const calendarArr = () => {
     let result: JSX.Element[] = [];
@@ -100,9 +96,9 @@ const Calendar = ({ type }: any): JSX.Element => {
                       <td
                         key={index}
                         onClick={() => {
-                          handleDate(days.format("YYYY.MM.DD"));
+                          handleDate(days);
                           isSun(days);
-                          pushDate(days);
+                          // pushDate(days);
                           // pushDate(
                           //   moment(days).startOf("month").format("YYYY.MM.DD"),
                           //   moment(days).endOf("month").format("YYYY.MM.DD")
@@ -125,9 +121,9 @@ const Calendar = ({ type }: any): JSX.Element => {
                       <td
                         key={index}
                         onClick={() => {
-                          handleDate(days.format("YYYY.MM.DD"));
+                          handleDate(days);
                           isSun(days);
-                          pushDate(days);
+                          // pushDate(days);
                         }}
                         className={
                           statDate.activeDate === days.format("YYYY.MM.DD")
@@ -147,9 +143,9 @@ const Calendar = ({ type }: any): JSX.Element => {
                       <td
                         key={index}
                         onClick={() => {
-                          handleDate(days.format("YYYY.MM.DD"));
+                          handleDate(days);
                           isSun(days);
-                          pushDate(days);
+                          // pushDate(days);
 
                           // pushDate(
                           //   days.format("YYYY.MM.DD"),
