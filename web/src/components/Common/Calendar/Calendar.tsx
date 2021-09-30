@@ -1,21 +1,20 @@
 import { useCallback, useState } from "react";
 import moment, { Moment } from "moment";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
-import { activeTabState, dateDataState, statDateState } from "recoil/stat";
+import { dateDataState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
 
 const Calendar = ({ type }: any): JSX.Element => {
-  const activeTab = useRecoilValue<number>(activeTabState);
   const [getMoment, setMoment] = useState(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
   const [weekDate, setWeekDate] = useState({
-    startDay: "",
-    endDay: "",
+    startDay: moment().startOf("week").format("YYYY.MM.DD"),
+    endDay: moment().endOf("week").format("YYYY.MM.DD"),
   });
-  const [dateData, setDateData] = useRecoilState<IDateDataTypes>(dateDataState);
+  const setDateData = useSetRecoilState<IDateDataTypes>(dateDataState);
   const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const today = getMoment;
   let startDate: string[] = ["", "", String(today)];
@@ -26,7 +25,7 @@ const Calendar = ({ type }: any): JSX.Element => {
       setWeekDate((prevDate) => ({
         ...prevDate,
         startDay: activeDate.startOf("week").format("YYYY.MM.DD"),
-        endDay: activeDate.startOf("week").add(6, "days").format("YYYY.MM.DD"),
+        endDay: activeDate.endOf("week").format("YYYY.MM.DD"),
       }));
     },
     [statDate.activeDate]
@@ -44,6 +43,9 @@ const Calendar = ({ type }: any): JSX.Element => {
         activeDate: date.format("YYYY.MM.DD"),
         dateArray: date.format("YYYY.MM.DD").split("."),
       });
+      if (statDate.activeDate === date.format("YYYY.MM.DD")) {
+        return;
+      }
       startDate.splice(2, 1, date.format("YYYY.MM.DD"));
       endDate.splice(2, 1, date.format("YYYY.MM.DD"));
       startDate.splice(
@@ -60,8 +62,8 @@ const Calendar = ({ type }: any): JSX.Element => {
       );
       console.log(startDate, endDate);
       setDateData({
-        startDate: startDate[activeTab],
-        endDate: endDate[activeTab],
+        startDate: startDate,
+        endDate: endDate,
       });
     },
     [statDate.activeDate]
@@ -98,11 +100,6 @@ const Calendar = ({ type }: any): JSX.Element => {
                         onClick={() => {
                           handleDate(days);
                           isSun(days);
-                          // pushDate(days);
-                          // pushDate(
-                          //   moment(days).startOf("month").format("YYYY.MM.DD"),
-                          //   moment(days).endOf("month").format("YYYY.MM.DD")
-                          // );
                         }}
                         className={
                           statDate.activeDate === days.format("YYYY.MM.DD")
@@ -123,7 +120,6 @@ const Calendar = ({ type }: any): JSX.Element => {
                         onClick={() => {
                           handleDate(days);
                           isSun(days);
-                          // pushDate(days);
                         }}
                         className={
                           statDate.activeDate === days.format("YYYY.MM.DD")
@@ -145,12 +141,6 @@ const Calendar = ({ type }: any): JSX.Element => {
                         onClick={() => {
                           handleDate(days);
                           isSun(days);
-                          // pushDate(days);
-
-                          // pushDate(
-                          //   days.format("YYYY.MM.DD"),
-                          //   days.format("YYYY.MM.DD")
-                          // );
                         }}
                         className={
                           statDate.activeDate === days.format("YYYY.MM.DD")

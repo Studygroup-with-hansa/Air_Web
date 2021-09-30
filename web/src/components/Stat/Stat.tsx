@@ -1,12 +1,14 @@
-import { useCallback } from "react";
-import { useRecoilState } from "recoil";
+import { useCallback, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import StatItem from "./StatItem/StatItem";
-import { activeTabState, statDateState } from "recoil/stat";
+import { activeTabState, dateDataState } from "recoil/stat";
 
 import "./Stat.scss";
+import { IDateDataTypes } from "types/stat.types";
 
 const Stat = (): JSX.Element => {
   const [activeTab, setActiveTab] = useRecoilState<number>(activeTabState);
+  const dateData = useRecoilValue<IDateDataTypes>(dateDataState);
 
   const handleMenu = useCallback((id: number) => {
     setActiveTab(id);
@@ -41,7 +43,10 @@ const Stat = (): JSX.Element => {
         </div>
       </div>
       <div className="stat-content">
-        <StatItem />
+        <StatItem
+          startDate={dateData.startDate[activeTab]}
+          endDate={dateData.endDate[activeTab]}
+        />
       </div>
     </div>
   );

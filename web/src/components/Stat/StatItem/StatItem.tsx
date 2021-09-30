@@ -6,9 +6,13 @@ import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
 
 import "./StatItem.scss";
 
-const StatItem = () => {
+export interface IStatItemTypes {
+  startDate: string;
+  endDate: string;
+}
+
+const StatItem = ({ startDate, endDate }: IStatItemTypes) => {
   const activeTab = useRecoilValue<number>(activeTabState);
-  const dateData = useRecoilValue<IDateDataTypes>(dateDataState);
 
   const tabMenu: any = {
     0: <Calendar type={"month"} />,
@@ -21,7 +25,7 @@ const StatItem = () => {
       <div className="statItem-left">{tabMenu[activeTab]}</div>
       <div className="statItem-right">
         <div>
-          {dateData.startDate} ~ {dateData.endDate}
+          {startDate} ~ {endDate}
         </div>
       </div>
     </div>

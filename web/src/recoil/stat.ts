@@ -18,8 +18,16 @@ export const statDateState = atom<IStatDateTypes>({
 });
 
 export const dateData: IDateDataTypes = {
-  startDate: "",
-  endDate: "",
+  startDate: [
+    moment().startOf("month").format("YYYY.MM.DD"),
+    moment().startOf("week").format("YYYY.MM.DD"),
+    moment().format("YYYY.MM.DD"),
+  ],
+  endDate: [
+    moment().endOf("month").format("YYYY.MM.DD"),
+    moment().endOf("week").format("YYYY.MM.DD"),
+    moment().format("YYYY.MM.DD"),
+  ],
 };
 export const dateDataState = atom<IDateDataTypes>({
   key: "dateDataState",

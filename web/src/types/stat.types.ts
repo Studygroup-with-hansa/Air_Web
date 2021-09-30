@@ -4,6 +4,6 @@ export interface IStatDateTypes {
 }
 
 export interface IDateDataTypes {
-  startDate: string;
-  endDate: string;
+  startDate: string[];
+  endDate: string[];
 }
