@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import moment, { Moment } from "moment";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
 import { dateDataState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
@@ -20,16 +20,7 @@ const Calendar = ({ type }: any): JSX.Element => {
   let startDate: string[] = ["", "", String(today)];
   let endDate: string[] = ["", "", String(today)];
 
-  const isSun = useCallback(
-    (activeDate: Moment) => {
-      setWeekDate((prevDate) => ({
-        ...prevDate,
-        startDay: activeDate.startOf("week").format("YYYY.MM.DD"),
-        endDay: activeDate.endOf("week").format("YYYY.MM.DD"),
-      }));
-    },
-    [statDate.activeDate]
-  );
+  // const addPercent = useCallback(() => {}, [statDate.activeDate]);
 
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -60,15 +51,62 @@ const Calendar = ({ type }: any): JSX.Element => {
         1,
         date.startOf("week").add(6, "days").format("YYYY.MM.DD")
       );
-      console.log(startDate, endDate);
       setDateData({
         startDate: startDate,
         endDate: endDate,
       });
+      setWeekDate((prevDate) => ({
+        ...prevDate,
+        startDay: date.startOf("week").format("YYYY.MM.DD"),
+        endDay: date.endOf("week").format("YYYY.MM.DD"),
+      }));
     },
     [statDate.activeDate]
   );
 
+  const dateArr = (index: any, days: any, type: any) => {
+    let className = "";
+    switch (type) {
+      case "month":
+        className =
+          statDate.activeDate === days.format("YYYY.MM.DD")
+            ? "date active"
+            : statDate.dateArray[1] === today.format("MM")
+            ? "date dateCycle"
+            : "date";
+        break;
+      case "week":
+        className =
+          statDate.activeDate === days.format("YYYY.MM.DD")
+            ? "date active"
+            : weekDate.startDay <= days.format("YYYY.MM.DD") &&
+              weekDate.endDay >= days.format("YYYY.MM.DD")
+            ? "date dateCycle"
+            : "date";
+        break;
+      case "day":
+        className =
+          statDate.activeDate === days.format("YYYY.MM.DD")
+            ? "date active"
+            : "date";
+        break;
+    }
+    return (
+      <td
+        key={index}
+        onClick={() => {
+          handleDate(days);
+        }}
+        className={className}
+      >
+        <div className="calendar-date">{days.format("D")}</div>
+        {/* {addPercent()} */}
+        <div className="calendar-percent">
+          <div className="calendar-percent-item">50%</div>
+        </div>
+      </td>
+    );
+  };
   const calendarArr = () => {
     let result: JSX.Element[] = [];
     let week = firstWeek;
@@ -92,66 +130,7 @@ const Calendar = ({ type }: any): JSX.Element => {
                   </td>
                 );
               } else {
-                switch (type) {
-                  case "month":
-                    return (
-                      <td
-                        key={index}
-                        onClick={() => {
-                          handleDate(days);
-                          isSun(days);
-                        }}
-                        className={
-                          statDate.activeDate === days.format("YYYY.MM.DD")
-                            ? "date active"
-                            : statDate.dateArray[1] === today.format("MM")
-                            ? "date dateCycle"
-                            : "date"
-                        }
-                      >
-                        <span>{days.format("D")}</span>
-                      </td>
-                    );
-
-                  case "week":
-                    return (
-                      <td
-                        key={index}
-                        onClick={() => {
-                          handleDate(days);
-                          isSun(days);
-                        }}
-                        className={
-                          statDate.activeDate === days.format("YYYY.MM.DD")
-                            ? "date active"
-                            : weekDate.startDay <= days.format("YYYY.MM.DD") &&
-                              weekDate.endDay >= days.format("YYYY.MM.DD")
-                            ? "date dateCycle"
-                            : "date"
-                        }
-                      >
-                        <span>{days.format("D")}</span>
-                      </td>
-                    );
-
-                  case "day":
-                    return (
-                      <td
-                        key={index}
-                        onClick={() => {
-                          handleDate(days);
-                          isSun(days);
-                        }}
-                        className={
-                          statDate.activeDate === days.format("YYYY.MM.DD")
-                            ? "date active"
-                            : "date"
-                        }
-                      >
-                        <span>{days.format("D")}</span>
-                      </td>
-                    );
-                }
+                return dateArr(index, days, type);
               }
             })}
         </tr>
@@ -180,7 +159,7 @@ const Calendar = ({ type }: any): JSX.Element => {
           }}
         />
       </div>
-      <table>
+      <table className="calendar-day">
         <th>
           {dayWeek.map((data) => {
             return (
@@ -190,6 +169,8 @@ const Calendar = ({ type }: any): JSX.Element => {
             );
           })}
         </th>
+      </table>
+      <table>
         <tbody>{calendarArr()}</tbody>
       </table>
     </div>
