@@ -2,9 +2,9 @@ import Img from "assets/ivory.png";
 
 import "./PostSideItem.scss";
 
-const PostSideItem = ({ isFirst }: any): JSX.Element => {
+const PostSideItem = (): JSX.Element => {
   return (
-    <div className={isFirst ? "postSideItem isFirst" : "postSideItem"}>
+    <div className="postSideItem">
       <div className="postSideItem-img">
         <div className="postSideItem-img-up">
           <img src={Img} alt="" />

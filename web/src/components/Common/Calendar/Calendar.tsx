@@ -4,11 +4,11 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
 import { dateDataState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
-
-import "./Calendar.scss";
 import useStatItem from "hooks/stat/useStatItem";
 
-const Calendar = ({ type }: any): JSX.Element => {
+import "./Calendar.scss";
+
+const Calendar = (type: { type: string }): JSX.Element => {
   const { calendargetGoal } = useStatItem();
 
   const [getMoment, setMoment] = useState(moment());
@@ -66,7 +66,7 @@ const Calendar = ({ type }: any): JSX.Element => {
     [statDate.activeDate]
   );
 
-  const dateArr = (index: any, days: any, type: any) => {
+  const dateArr = (index: number, days: Moment, type: string) => {
     switch (type) {
       case "month":
         className =
@@ -158,7 +158,7 @@ const Calendar = ({ type }: any): JSX.Element => {
                   </td>
                 );
               } else {
-                return dateArr(index, days, type);
+                return dateArr(index, days, type.type);
               }
             })}
         </tr>

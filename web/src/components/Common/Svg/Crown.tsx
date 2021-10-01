@@ -1,4 +1,4 @@
-const Crown = ({ props }: any): JSX.Element => {
+const Crown = (props: { props: string }): JSX.Element => {
   return (
     <svg
       style={{
@@ -12,7 +12,7 @@ const Crown = ({ props }: any): JSX.Element => {
     >
       <path
         d="M3.7915 0.838135L4.39853 4.0714L7.58595 3.25726L8.19298 6.49053L11.3804 5.67638L8.1549 10.7356L0.566004 5.8974L3.7915 0.838135Z"
-        fill={props}
+        fill={props.props}
       />
     </svg>
   );

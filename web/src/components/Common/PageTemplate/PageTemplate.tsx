@@ -1,6 +1,7 @@
 import SideBar from "components/Common/SideBar";
+import { IPageTemplateTypes } from "types/common.types";
+
 import "./PageTemplate.scss";
-import { IPageTemplateTypes } from "../../../types/common.types";
 
 const PageTemplate = ({ children }: IPageTemplateTypes): JSX.Element => {
   return (

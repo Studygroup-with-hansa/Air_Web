@@ -77,6 +77,7 @@ const Chart = (): JSX.Element => {
         data={data}
         colors={(data) => data.data.color}
         innerRadius={0.5}
+        margin={{ top: 0, right: 10, bottom: 0, left: 10 }}
         padAngle={1}
         enableArcLinkLabels={false}
         enableArcLabels={false}

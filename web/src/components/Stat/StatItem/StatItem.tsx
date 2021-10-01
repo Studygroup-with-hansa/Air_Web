@@ -12,14 +12,15 @@ export interface IStatItemTypes {
 }
 
 const StatItem = ({ startDate, endDate }: IStatItemTypes) => {
-  const stat = useStatItem(); //나중에 서버 값으로 변경
-
   const activeTab = useRecoilValue<number>(activeTabState);
 
-  const tabMenu: any = {
-    0: <Calendar type={"month"} />,
-    1: <Calendar type={"week"} />,
-    2: <Calendar type={"day"} />,
+  const stat = useStatItem(); //나중에 서버 값으로 변경
+  const { changeTimeType } = useStatItem();
+
+  const tabMenu: { [key: number]: JSX.Element } = {
+    0: <Calendar type="month" />,
+    1: <Calendar type="week" />,
+    2: <Calendar type="day" />,
   };
 
   return (

@@ -10,6 +10,8 @@ const useStatItem = () => {
     return goal;
   };
 
+  const changeTimeType = () => {};
+
   const stat = {
     status: 200,
     detail: "OK",
@@ -89,7 +91,7 @@ const useStatItem = () => {
     },
   };
 
-  return { calendargetGoal, stat };
+  return { calendargetGoal, changeTimeType, stat };
 };
 
 export default useStatItem;
