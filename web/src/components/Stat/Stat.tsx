@@ -1,10 +1,10 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import StatItem from "./StatItem/StatItem";
 import { activeTabState, dateDataState } from "recoil/stat";
+import { IDateDataTypes } from "types/stat.types";
 
 import "./Stat.scss";
-import { IDateDataTypes } from "types/stat.types";
 
 const Stat = (): JSX.Element => {
   const [activeTab, setActiveTab] = useRecoilState<number>(activeTabState);

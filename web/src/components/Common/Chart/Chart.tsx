@@ -1,4 +1,5 @@
 import { ResponsivePie } from "@nivo/pie";
+import React from "react";
 
 const Chart = (): JSX.Element => {
   const data = [
@@ -20,6 +21,54 @@ const Chart = (): JSX.Element => {
       value: 300,
       color: "#F6C343",
     },
+    {
+      id: "사회",
+      label: "사회",
+      value: 400,
+      color: "#79D16E",
+    },
+    {
+      id: "영어",
+      label: "영어",
+      value: 300,
+      color: "#97BAFF",
+    },
+    {
+      id: "웹프",
+      label: "웹프",
+      value: 300,
+      color: "#8886FF",
+    },
+    {
+      id: "프실",
+      label: "프실",
+      value: 300,
+      color: "#F6C343",
+    },
+    {
+      id: "역사",
+      label: "역사",
+      value: 300,
+      color: "#F6C343",
+    },
+    {
+      id: "체육",
+      label: "체육",
+      value: 300,
+      color: "#F6C343",
+    },
+    {
+      id: "음악",
+      label: "음악",
+      value: 400,
+      color: "#79D16E",
+    },
+    {
+      id: "도덕",
+      label: "도덕",
+      value: 300,
+      color: "#97BAFF",
+    },
   ];
 
   return (
@@ -27,28 +76,10 @@ const Chart = (): JSX.Element => {
       <ResponsivePie
         data={data}
         colors={(data) => data.data.color}
-        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
         padAngle={1}
         enableArcLinkLabels={false}
         enableArcLabels={false}
-        legends={[
-          {
-            anchor: "bottom",
-            direction: "row",
-            justify: false,
-            translateX: 20,
-            translateY: 40,
-            itemsSpacing: -30,
-            itemWidth: 100,
-            itemHeight: 18,
-            itemTextColor: "#999",
-            itemDirection: "left-to-right",
-            itemOpacity: 1,
-            symbolSize: 18,
-            symbolShape: "circle",
-          },
-        ]}
       />
     </>
   );
