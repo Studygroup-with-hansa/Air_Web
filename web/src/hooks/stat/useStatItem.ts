@@ -1,8 +1,9 @@
 const useStatItem = () => {
-  const getGoal = (date: string): number => {
+  const calendargetGoal = (date: string): number => {
     let goal = 0;
 
     stat.data.stats.forEach((data) => {
+      //나중에 서버 값으로 바꾸기
       if (data.date === date) goal = data.goal;
     });
 
@@ -13,7 +14,7 @@ const useStatItem = () => {
     status: 200,
     detail: "OK",
     data: {
-      totalTiem: 3000,
+      totalTime: 3000,
       goals: 95,
       stats: [
         {
@@ -88,7 +89,7 @@ const useStatItem = () => {
     },
   };
 
-  return { getGoal };
+  return { calendargetGoal, stat };
 };
 
 export default useStatItem;

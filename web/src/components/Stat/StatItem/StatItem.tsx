@@ -4,6 +4,7 @@ import { activeTabState } from "recoil/stat";
 import Chart from "components/Common/Chart";
 
 import "./StatItem.scss";
+import useStatItem from "../../../hooks/stat/useStatItem";
 
 export interface IStatItemTypes {
   startDate: string;
@@ -11,11 +12,7 @@ export interface IStatItemTypes {
 }
 
 const StatItem = ({ startDate, endDate }: IStatItemTypes) => {
-  //나중에 서버 값으로 변경
-  const data = {
-    totalTime: "00H 00M 00S",
-    goal: "0",
-  };
+  const stat = useStatItem(); //나중에 서버 값으로 변경
 
   const activeTab = useRecoilValue<number>(activeTabState);
 
@@ -36,11 +33,11 @@ const StatItem = ({ startDate, endDate }: IStatItemTypes) => {
           <div>
             <div className="statItem-right-content-title">
               총 공부 시간
-              <div>{data.totalTime}</div>
+              <div>{stat.stat.data.totalTime}</div>
             </div>
             <div className="statItem-right-content-title">
               평균 목표 달성률
-              <div>{data.goal}%</div>
+              <div>{stat.stat.data.goals}%</div>
             </div>
           </div>
           <div className="statItem-right-content-item">

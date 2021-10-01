@@ -9,7 +9,7 @@ import "./Calendar.scss";
 import useStatItem from "hooks/stat/useStatItem";
 
 const Calendar = ({ type }: any): JSX.Element => {
-  const { getGoal } = useStatItem();
+  const { calendargetGoal } = useStatItem();
 
   const [getMoment, setMoment] = useState(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
@@ -95,11 +95,11 @@ const Calendar = ({ type }: any): JSX.Element => {
     const percentDiv = (date: string) => {
       if (className === "date dateCycle") {
         return {
-          __html: `${getGoal(date)}%`,
+          __html: `${calendargetGoal(date)}%`,
         };
       } else if (className === "date active") {
         return {
-          __html: `${getGoal(date)}%`,
+          __html: `${calendargetGoal(date)}%`,
         };
       } else {
         return {
@@ -123,7 +123,7 @@ const Calendar = ({ type }: any): JSX.Element => {
             <div
               style={{
                 backgroundColor: `rgb(95,121,211, ${
-                  30 + getGoal(days.format("YYYY-MM-DD")) * (7 / 10)
+                  30 + calendargetGoal(days.format("YYYY-MM-DD")) * (7 / 10)
                 }%)`,
               }}
               className="calendar-percent-item-text"
