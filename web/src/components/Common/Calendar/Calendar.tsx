@@ -6,8 +6,15 @@ import { dateDataState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
+import ReactDOM from "react-dom";
 
 const Calendar = ({ type }: any): JSX.Element => {
+  //나중에 서버 값으로 변경
+  // const data = {[
+  //   'date': "",
+  //   'goal': ""]
+  // };
+
   const [getMoment, setMoment] = useState(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
   const [weekDate, setWeekDate] = useState({
@@ -19,6 +26,7 @@ const Calendar = ({ type }: any): JSX.Element => {
   const today = getMoment;
   let startDate: string[] = ["", "", String(today)];
   let endDate: string[] = ["", "", String(today)];
+  let className = "";
 
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -28,6 +36,12 @@ const Calendar = ({ type }: any): JSX.Element => {
 
   const handleDate = useCallback(
     (date: Moment) => {
+      // document.querySelector('.calendar-percent-item').
+      // ReactDOM.render(
+      //   percentDiv,
+      //   document.querySelector(".calendar-percent-item")
+      // );
+      // document.querySelector('.calendar-percent-item')?.innerHTML('')
       setStatDate({
         activeDate: date.format("YYYY.MM.DD"),
         dateArray: date.format("YYYY.MM.DD").split("."),
@@ -63,7 +77,6 @@ const Calendar = ({ type }: any): JSX.Element => {
   );
 
   const dateArr = (index: any, days: any, type: any) => {
-    let className = "";
     switch (type) {
       case "month":
         className =
@@ -89,6 +102,35 @@ const Calendar = ({ type }: any): JSX.Element => {
             : "date";
         break;
     }
+    const percentDiv = () => {
+      if (className === "date dateCycle") {
+        return {
+          __html: "0%",
+        };
+      } else if (className === "date active") {
+        return {
+          __html: "0%",
+        };
+      } else {
+        return {
+          __html: "",
+        };
+      }
+      // return (
+      //   <>
+      //     <div className="calendar-percent-item-bar" />
+      //     <div
+      //       style={{
+      //         backgroundColor: `rgb(95,121,211, ${30 + 50 * (7 / 10)}%)`,
+      //       }}
+      //       className="calendar-percent-item-text"
+      //     >
+      //       0%
+      //     </div>
+      //   </>
+      // );
+    };
+
     return (
       <td
         key={index}
@@ -106,9 +148,9 @@ const Calendar = ({ type }: any): JSX.Element => {
                 backgroundColor: `rgb(95,121,211, ${30 + 50 * (7 / 10)}%)`,
               }}
               className="calendar-percent-item-text"
-            >
-              0%
-            </div>
+              dangerouslySetInnerHTML={percentDiv()}
+            ></div>
+            {/* {className === "dateCycle" || "active" ? percentDiv() : <></>} */}
           </div>
         </div>
       </td>
@@ -133,7 +175,8 @@ const Calendar = ({ type }: any): JSX.Element => {
               if (days.format("MM") !== today.format("MM")) {
                 return (
                   <td key={index} className="date deactivate">
-                    <span>{days.format("D")}</span>
+                    <div>{days.format("D")}</div>
+                    <div className="calendar-percent" />
                   </td>
                 );
               } else {

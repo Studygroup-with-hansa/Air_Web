@@ -27,10 +27,9 @@
 
     &-item {
       position: relative;
-      font-size: 12px;
-      overflow: hidden;
 
       &-text {
+        font-size: 12px;
         color: white;
       }
     }
@@ -54,7 +53,7 @@
   height: 69px;
 }
 .active {
-  background-color: #ff909015;
+  // background-color: #ff909015;
   outline: 1px solid var(--red);
 }
 .deactivate {
@@ -62,6 +61,6 @@
   cursor: default;
 }
 .dateCycle {
-  outline: 1px solid #ff909015;
-  background-color: #ff909015;
+  // outline: 1px solid #ff909015;
+  // background-color: #ff909015;
 }

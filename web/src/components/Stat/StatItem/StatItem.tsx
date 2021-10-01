@@ -11,6 +11,12 @@ export interface IStatItemTypes {
 }
 
 const StatItem = ({ startDate, endDate }: IStatItemTypes) => {
+  //나중에 서버 값으로 변경
+  const data = {
+    totalTime: "00H 00M 00S",
+    goal: "0",
+  };
+
   const activeTab = useRecoilValue<number>(activeTabState);
 
   const tabMenu: any = {
@@ -30,11 +36,11 @@ const StatItem = ({ startDate, endDate }: IStatItemTypes) => {
           <div>
             <div className="statItem-right-content-title">
               총 공부 시간
-              <div>00H 00M 00S</div>
+              <div>{data.totalTime}</div>
             </div>
             <div className="statItem-right-content-title">
               평균 목표 달성률
-              <div>0%</div>
+              <div>{data.goal}%</div>
             </div>
           </div>
           <div className="statItem-right-content-item">
