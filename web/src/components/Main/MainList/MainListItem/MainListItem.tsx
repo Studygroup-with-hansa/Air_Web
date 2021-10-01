@@ -1,12 +1,8 @@
 import { CSSProperties } from "react";
+import { IMainListStyleType } from "types/mainList.types";
 
 import "./MainListItem.scss";
 
-export interface IMainListStyleType {
-  opacity: string;
-  data: number;
-  customStyle?: CSSProperties;
-}
 const MainListItem = ({
   opacity = "30%",
   data,

@@ -2,20 +2,16 @@ import { useRecoilValue } from "recoil";
 import Calendar from "components/Common/Calendar";
 import { activeTabState } from "recoil/stat";
 import Chart from "components/Common/Chart";
+import { IDateTypes } from "types/stat.types";
+import useStatItem from "hooks/stat/useStatItem";
 
 import "./StatItem.scss";
-import useStatItem from "../../../hooks/stat/useStatItem";
 
-export interface IStatItemTypes {
-  startDate: string;
-  endDate: string;
-}
-
-const StatItem = ({ startDate, endDate }: IStatItemTypes) => {
-  const activeTab = useRecoilValue<number>(activeTabState);
-
-  const stat = useStatItem(); //나중에 서버 값으로 변경
+const StatItem = ({ startDate, endDate }: IDateTypes) => {
   const { changeTimeType } = useStatItem();
+  const stat = useStatItem(); //나중에 서버 값으로 변경
+
+  const activeTab = useRecoilValue<number>(activeTabState);
 
   const tabMenu: { [key: number]: JSX.Element } = {
     0: <Calendar type="month" />,

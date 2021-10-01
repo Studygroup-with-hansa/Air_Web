@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import moment, { Moment } from "moment";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
+import { IDateDataTypes, IDateTypes, IStatDateTypes } from "types/stat.types";
 import { dateDataState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 import useStatItem from "hooks/stat/useStatItem";
@@ -11,34 +11,33 @@ import "./Calendar.scss";
 const Calendar = (type: { type: string }): JSX.Element => {
   const { calendargetGoal } = useStatItem();
 
-  const [getMoment, setMoment] = useState(moment());
+  const [getMoment, setMoment] = useState<Moment>(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
-  const [weekDate, setWeekDate] = useState({
-    startDay: moment().startOf("week").format("YYYY.MM.DD"),
-    endDay: moment().endOf("week").format("YYYY.MM.DD"),
+  const [weekDate, setWeekDate] = useState<IDateTypes>({
+    startDate: moment().startOf("week").format("YYYY.MM.DD"),
+    endDate: moment().endOf("week").format("YYYY.MM.DD"),
   });
   const setDateData = useSetRecoilState<IDateDataTypes>(dateDataState);
-  const dayWeek = ["일", "월", "화", "수", "목", "금", "토"];
-  const today = getMoment;
-  let startDate: string[] = ["", "", String(today)];
-  let endDate: string[] = ["", "", String(today)];
+  const dayWeek: string[] = ["일", "월", "화", "수", "목", "금", "토"];
+  let startDate: string[] = ["", "", String(getMoment)];
+  let endDate: string[] = ["", "", String(getMoment)];
   let className: string = "";
 
-  const firstWeek = today.clone().startOf("month").week();
-  const lastWeek =
-    today.clone().endOf("month").week() === 1
+  const firstWeek: number = getMoment.clone().startOf("month").week();
+  const lastWeek: number =
+    getMoment.clone().endOf("month").week() === 1
       ? 53
-      : today.clone().endOf("month").week();
+      : getMoment.clone().endOf("month").week();
 
   const handleDate = useCallback(
     (date: Moment) => {
+      if (statDate.activeDate === date.format("YYYY.MM.DD")) {
+        return;
+      }
       setStatDate({
         activeDate: date.format("YYYY.MM.DD"),
         dateArray: date.format("YYYY.MM.DD").split("."),
       });
-      if (statDate.activeDate === date.format("YYYY.MM.DD")) {
-        return;
-      }
       startDate.splice(2, 1, date.format("YYYY.MM.DD"));
       endDate.splice(2, 1, date.format("YYYY.MM.DD"));
       startDate.splice(
@@ -72,7 +71,7 @@ const Calendar = (type: { type: string }): JSX.Element => {
         className =
           statDate.activeDate === days.format("YYYY.MM.DD")
             ? "date active"
-            : statDate.dateArray[1] === today.format("MM")
+            : statDate.dateArray[1] === getMoment.format("MM")
             ? "date dateCycle"
             : "date";
         break;
@@ -80,8 +79,8 @@ const Calendar = (type: { type: string }): JSX.Element => {
         className =
           statDate.activeDate === days.format("YYYY.MM.DD")
             ? "date active"
-            : weekDate.startDay <= days.format("YYYY.MM.DD") &&
-              weekDate.endDay >= days.format("YYYY.MM.DD")
+            : weekDate.startDate <= days.format("YYYY.MM.DD") &&
+              weekDate.endDate >= days.format("YYYY.MM.DD")
             ? "date dateCycle"
             : "date";
         break;
@@ -143,14 +142,14 @@ const Calendar = (type: { type: string }): JSX.Element => {
           {Array(7)
             .fill(0)
             .map((data, index) => {
-              let days = today
+              let days = getMoment
                 .clone()
                 .startOf("year")
                 .week(week)
                 .startOf("week")
                 .add(index, "day");
 
-              if (days.format("MM") !== today.format("MM")) {
+              if (days.format("MM") !== getMoment.format("MM")) {
                 return (
                   <td key={index} className="date deactivate">
                     <div>{days.format("D")}</div>
@@ -177,7 +176,7 @@ const Calendar = (type: { type: string }): JSX.Element => {
             setMoment(getMoment.clone().subtract(1, "month"));
           }}
         />
-        <span>{today.format("YYYY년 MM월")}</span>
+        <span>{getMoment.format("YYYY년 MM월")}</span>
         <img
           src={arrow}
           alt="arrow"

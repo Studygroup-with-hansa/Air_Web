@@ -4,12 +4,13 @@ import profile from "assets/profile.svg";
 import setting from "assets/setting.svg";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import { History } from "history";
 
 import "./SideBar.scss";
 
 const SideBar = (): JSX.Element => {
-  const history = useHistory();
-  const path = window.location.pathname;
+  const history: History = useHistory();
+  const path: string = window.location.pathname;
 
   const handleIcon = useCallback(
     (url: string) => {

@@ -1,6 +1,6 @@
 const useStatItem = () => {
   const calendargetGoal = (date: string): number => {
-    let goal = 0;
+    let goal: number = 0;
 
     stat.data.stats.forEach((data) => {
       //나중에 서버 값으로 바꾸기

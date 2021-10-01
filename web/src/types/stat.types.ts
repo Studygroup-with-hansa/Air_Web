@@ -7,3 +7,8 @@ export interface IDateDataTypes {
   startDate: string[];
   endDate: string[];
 }
+
+export interface IDateTypes {
+  startDate: string;
+  endDate: string;
+}
