@@ -6,13 +6,10 @@ import { dateDataState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
+import useStatItem from "hooks/stat/useStatItem";
 
 const Calendar = ({ type }: any): JSX.Element => {
-  //나중에 서버 값으로 변경
-  // const data = {[
-  //   'date': "",
-  //   'goal': ""]
-  // };
+  const { getGoal } = useStatItem();
 
   const [getMoment, setMoment] = useState(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
@@ -25,7 +22,7 @@ const Calendar = ({ type }: any): JSX.Element => {
   const today = getMoment;
   let startDate: string[] = ["", "", String(today)];
   let endDate: string[] = ["", "", String(today)];
-  let className = "";
+  let className: string = "";
 
   const firstWeek = today.clone().startOf("month").week();
   const lastWeek =
@@ -95,14 +92,14 @@ const Calendar = ({ type }: any): JSX.Element => {
             : "date";
         break;
     }
-    const percentDiv = () => {
+    const percentDiv = (date: string) => {
       if (className === "date dateCycle") {
         return {
-          __html: "0%",
+          __html: `${getGoal(date)}%`,
         };
       } else if (className === "date active") {
         return {
-          __html: "0%",
+          __html: `${getGoal(date)}%`,
         };
       } else {
         return {
@@ -125,11 +122,13 @@ const Calendar = ({ type }: any): JSX.Element => {
             <div className="calendar-percent-item-bar" />
             <div
               style={{
-                backgroundColor: `rgb(95,121,211, ${30 + 0 * (7 / 10)}%)`,
+                backgroundColor: `rgb(95,121,211, ${
+                  30 + getGoal(days.format("YYYY-MM-DD")) * (7 / 10)
+                }%)`,
               }}
               className="calendar-percent-item-text"
-              dangerouslySetInnerHTML={percentDiv()}
-            ></div>
+              dangerouslySetInnerHTML={percentDiv(days.format("YYYY-MM-DD"))}
+            />
           </div>
         </div>
       </td>
