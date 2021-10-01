@@ -53,14 +53,9 @@
   height: 69px;
 }
 .active {
-  // background-color: #ff909015;
   outline: 1px solid var(--red);
 }
 .deactivate {
   opacity: 50%;
   cursor: default;
-}
-.dateCycle {
-  // outline: 1px solid #ff909015;
-  // background-color: #ff909015;
 }

@@ -6,7 +6,6 @@ import { dateDataState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 
 import "./Calendar.scss";
-import ReactDOM from "react-dom";
 
 const Calendar = ({ type }: any): JSX.Element => {
   //나중에 서버 값으로 변경
@@ -36,12 +35,6 @@ const Calendar = ({ type }: any): JSX.Element => {
 
   const handleDate = useCallback(
     (date: Moment) => {
-      // document.querySelector('.calendar-percent-item').
-      // ReactDOM.render(
-      //   percentDiv,
-      //   document.querySelector(".calendar-percent-item")
-      // );
-      // document.querySelector('.calendar-percent-item')?.innerHTML('')
       setStatDate({
         activeDate: date.format("YYYY.MM.DD"),
         dateArray: date.format("YYYY.MM.DD").split("."),
@@ -116,19 +109,6 @@ const Calendar = ({ type }: any): JSX.Element => {
           __html: "",
         };
       }
-      // return (
-      //   <>
-      //     <div className="calendar-percent-item-bar" />
-      //     <div
-      //       style={{
-      //         backgroundColor: `rgb(95,121,211, ${30 + 50 * (7 / 10)}%)`,
-      //       }}
-      //       className="calendar-percent-item-text"
-      //     >
-      //       0%
-      //     </div>
-      //   </>
-      // );
     };
 
     return (
@@ -145,12 +125,11 @@ const Calendar = ({ type }: any): JSX.Element => {
             <div className="calendar-percent-item-bar" />
             <div
               style={{
-                backgroundColor: `rgb(95,121,211, ${30 + 50 * (7 / 10)}%)`,
+                backgroundColor: `rgb(95,121,211, ${30 + 0 * (7 / 10)}%)`,
               }}
               className="calendar-percent-item-text"
               dangerouslySetInnerHTML={percentDiv()}
             ></div>
-            {/* {className === "dateCycle" || "active" ? percentDiv() : <></>} */}
           </div>
         </div>
       </td>
