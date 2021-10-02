@@ -10,7 +10,17 @@ const useStatItem = () => {
     return goal;
   };
 
-  const changeTimeType = () => {};
+  const changeTimeType = (time: number) => {
+    let hour = "",
+      min = "",
+      sec = "";
+
+    hour += ("0" + Math.floor(time / 3600)).slice(-2);
+    min += ("0" + Math.floor((time % 3600) / 60)).slice(-2);
+    sec += ("0" + ((time % 3600) % 60)).slice(-2);
+
+    return `${hour}H ${min}M ${sec}S`;
+  };
 
   const stat = {
     status: 200,

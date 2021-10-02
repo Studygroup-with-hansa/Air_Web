@@ -1,19 +1,21 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import moment, { Moment } from "moment";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
-import { dateDataState, statDateState } from "recoil/stat";
+import { dateDataState, statDateState, totalTimeState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 import useStatItem from "hooks/stat/useStatItem";
 
 import "./Calendar.scss";
 
 const Calendar = (type: { type: string }): JSX.Element => {
-  const { calendarGetGoal } = useStatItem();
+  const { stat, calendarGetGoal, changeTimeType } = useStatItem();
+  const statData = stat.data;
 
   const [getMoment, setMoment] = useState<Moment>(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
   const [dateData, setDateData] = useRecoilState<IDateDataTypes>(dateDataState);
+  const setTotalTime = useSetRecoilState<string>(totalTimeState);
   const dayWeek: string[] = ["일", "월", "화", "수", "목", "금", "토"];
   let startDate: string[] = ["", "", String(getMoment)];
   let endDate: string[] = ["", "", String(getMoment)];
@@ -24,6 +26,10 @@ const Calendar = (type: { type: string }): JSX.Element => {
     getMoment.clone().endOf("month").week() === 1
       ? 53
       : getMoment.clone().endOf("month").week();
+
+  useEffect(() => {
+    setTotalTime(changeTimeType(statData.totalTime));
+  }, []);
 
   const handleDate = useCallback(
     (date: Moment) => {
@@ -52,6 +58,7 @@ const Calendar = (type: { type: string }): JSX.Element => {
         startDate: startDate,
         endDate: endDate,
       });
+      setTotalTime(changeTimeType(statData.totalTime));
     },
     [statDate.activeDate]
   );

@@ -12,3 +12,8 @@ export interface IDateTypes {
   startDate: string;
   endDate: string;
 }
+
+export interface ICalendarTypes {
+  type: string;
+  time: number;
+}
