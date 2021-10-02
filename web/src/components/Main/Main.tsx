@@ -7,7 +7,7 @@ import "./Main.scss";
 
 const Main = (): JSX.Element => {
   const { EveryMainListDumi, friendsMainListDumi } = useMainList();
-  const [isTrue, setIsTrue] = useState(false);
+  const [isTrue, setIsTrue] = useState<boolean>(false);
   const handleToggle = () => {
     setIsTrue(isTrue ? false : true);
   };

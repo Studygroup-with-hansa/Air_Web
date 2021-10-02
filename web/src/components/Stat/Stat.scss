@@ -1,0 +1,42 @@
+.stat {
+  height: 100vh;
+  margin-left: 100px;
+  padding: 50px 100px;
+
+  &-tab {
+    position: relative;
+    display: flex;
+    width: max-content;
+    border-radius: 5px;
+    z-index: 10;
+
+    &-item {
+      padding: 15px 25px 35px;
+      border: 1px solid var(--stroke);
+      border-radius: 5px 5px 0 0;
+      font-weight: bold;
+      transition: 0.2s;
+      background-color: var(--white);
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
+    }
+  }
+  &-content {
+    position: relative;
+    height: 580px;
+    margin-top: -30px;
+    padding: 25px;
+    border: 1px solid var(--stroke);
+    border-radius: 0 5px 5px 5px;
+    background-color: var(--white);
+    z-index: 11;
+  }
+}
+
+.isMainTab {
+  color: var(--white);
+  background-color: var(--main);
+}

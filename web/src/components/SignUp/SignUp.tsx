@@ -1,11 +1,12 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import defaultProfile from "assets/defaultProfile.svg";
 import addImg from "assets/addImg.svg";
+import { History } from "history";
 
 const SignUp = (): JSX.Element => {
   const [fileUrl, setFileUrl] = useState<null | string>(null);
-  const history = useHistory();
+  const history: History = useHistory();
 
   const inputImage = useCallback((event) => {
     const imageFile = event.target.files[0];

@@ -1,14 +1,14 @@
+import Stat from "components/Stat";
 import PageTemplate from "components/Common/PageTemplate";
-import Main from "components/Main/Main";
 
-const MainPage = (): JSX.Element => {
+const StatPage = () => {
   return (
     <>
       <PageTemplate>
-        <Main />
+        <Stat />
       </PageTemplate>
     </>
   );
 };
 
-export default MainPage;
+export default StatPage;

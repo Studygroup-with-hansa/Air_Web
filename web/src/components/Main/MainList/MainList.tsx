@@ -16,12 +16,15 @@ const MainList = ({
     case "1":
       rankStyle = "#FFD900";
       break;
+
     case "2":
       rankStyle = "#c0c0c0";
       break;
+
     case "3":
       rankStyle = "#f5b87c";
       break;
+
     default:
       rankStyle = "";
       break;

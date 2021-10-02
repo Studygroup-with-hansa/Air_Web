@@ -1,4 +1,4 @@
-import { Stream } from "stream";
+import { CSSProperties } from "react";
 
 export interface IMainListTypes {
   rank: string;
@@ -6,4 +6,10 @@ export interface IMainListTypes {
   week: number[];
   time: string;
   isMine?: boolean;
+}
+
+export interface IMainListStyleType {
+  opacity: string;
+  data: number;
+  customStyle?: CSSProperties;
 }

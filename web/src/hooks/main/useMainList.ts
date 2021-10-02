@@ -1,5 +1,10 @@
 const useMainList = () => {
-  const EveryMainListDumi: any[] = [
+  const EveryMainListDumi: {
+    rank: string;
+    name: string;
+    week: number[];
+    time: string;
+  }[] = [
     {
       rank: "1",
       name: "박상아",
@@ -80,7 +85,12 @@ const useMainList = () => {
     },
   ];
 
-  const friendsMainListDumi: any[] = [
+  const friendsMainListDumi: {
+    rank: string;
+    name: string;
+    week: number[];
+    time: string;
+  }[] = [
     {
       rank: "1",
       name: "내친구",

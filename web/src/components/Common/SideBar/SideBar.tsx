@@ -4,12 +4,13 @@ import profile from "assets/profile.svg";
 import setting from "assets/setting.svg";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import { History } from "history";
 
 import "./SideBar.scss";
 
 const SideBar = (): JSX.Element => {
-  const history = useHistory();
-  const path = window.location.pathname;
+  const history: History = useHistory();
+  const path: string = window.location.pathname;
 
   const handleIcon = useCallback(
     (url: string) => {
@@ -25,7 +26,7 @@ const SideBar = (): JSX.Element => {
           className={path === "/" ? "isMain" : ""}
           onClick={() => handleIcon("/")}
           src={stat}
-          alt="stat"
+          alt="rank"
         />
       </div>
       <div>
@@ -34,6 +35,15 @@ const SideBar = (): JSX.Element => {
           onClick={() => handleIcon("/post")}
           src={post}
           alt="post"
+        />
+      </div>
+      <div>
+        <img
+          style={{ transform: "rotate(90deg)" }}
+          className={path === "/stat" ? "isMain" : ""}
+          onClick={() => handleIcon("/stat")}
+          src={stat}
+          alt="stat"
         />
       </div>
       <div>

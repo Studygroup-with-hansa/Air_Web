@@ -1,12 +1,13 @@
 import { ChangeEvent } from "react";
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { History } from "history";
 
 import "./SignIn.scss";
 
 const Sign = (): JSX.Element => {
   const [isEmpty, setIsEmpty] = useState<string>("");
-  const history = useHistory();
+  const history: History = useHistory();
   const onChangeButton = (e: ChangeEvent<HTMLInputElement>) => {
     setIsEmpty(e.target.value);
   };
