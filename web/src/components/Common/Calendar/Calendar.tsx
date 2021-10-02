@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import moment, { Moment } from "moment";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { IDateDataTypes, IDateTypes, IStatDateTypes } from "types/stat.types";
+import { useRecoilState } from "recoil";
+import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
 import { dateDataState, statDateState } from "recoil/stat";
 import arrow from "assets/arrow.svg";
 import useStatItem from "hooks/stat/useStatItem";
@@ -9,15 +9,11 @@ import useStatItem from "hooks/stat/useStatItem";
 import "./Calendar.scss";
 
 const Calendar = (type: { type: string }): JSX.Element => {
-  const { calendargetGoal } = useStatItem();
+  const { calendarGetGoal } = useStatItem();
 
   const [getMoment, setMoment] = useState<Moment>(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
-  const [weekDate, setWeekDate] = useState<IDateTypes>({
-    startDate: moment().startOf("week").format("YYYY.MM.DD"),
-    endDate: moment().endOf("week").format("YYYY.MM.DD"),
-  });
-  const setDateData = useSetRecoilState<IDateDataTypes>(dateDataState);
+  const [dateData, setDateData] = useRecoilState<IDateDataTypes>(dateDataState);
   const dayWeek: string[] = ["일", "월", "화", "수", "목", "금", "토"];
   let startDate: string[] = ["", "", String(getMoment)];
   let endDate: string[] = ["", "", String(getMoment)];
@@ -31,13 +27,13 @@ const Calendar = (type: { type: string }): JSX.Element => {
 
   const handleDate = useCallback(
     (date: Moment) => {
-      if (statDate.activeDate === date.format("YYYY.MM.DD")) {
-        return;
-      }
       setStatDate({
         activeDate: date.format("YYYY.MM.DD"),
         dateArray: date.format("YYYY.MM.DD").split("."),
       });
+      if (statDate.activeDate === date.format("YYYY.MM.DD")) {
+        return;
+      }
       startDate.splice(2, 1, date.format("YYYY.MM.DD"));
       endDate.splice(2, 1, date.format("YYYY.MM.DD"));
       startDate.splice(
@@ -56,11 +52,6 @@ const Calendar = (type: { type: string }): JSX.Element => {
         startDate: startDate,
         endDate: endDate,
       });
-      setWeekDate((prevDate) => ({
-        ...prevDate,
-        startDay: date.startOf("week").format("YYYY.MM.DD"),
-        endDay: date.endOf("week").format("YYYY.MM.DD"),
-      }));
     },
     [statDate.activeDate]
   );
@@ -68,21 +59,25 @@ const Calendar = (type: { type: string }): JSX.Element => {
   const dateArr = (index: number, days: Moment, type: string) => {
     switch (type) {
       case "month":
-        className =
-          statDate.activeDate === days.format("YYYY.MM.DD")
-            ? "date active"
-            : statDate.dateArray[1] === getMoment.format("MM")
-            ? "date dateCycle"
-            : "date";
+        if (statDate.activeDate === days.format("YYYY.MM.DD")) {
+          className = "date active";
+        } else if (statDate.dateArray[1] === getMoment.format("MM")) {
+          className = "date dateCycle";
+        } else {
+          className = "date";
+        }
         break;
       case "week":
-        className =
-          statDate.activeDate === days.format("YYYY.MM.DD")
-            ? "date active"
-            : weekDate.startDate <= days.format("YYYY.MM.DD") &&
-              weekDate.endDate >= days.format("YYYY.MM.DD")
-            ? "date dateCycle"
-            : "date";
+        if (statDate.activeDate === days.format("YYYY.MM.DD")) {
+          className = "date active";
+        } else if (
+          dateData.startDate[1] <= days.format("YYYY.MM.DD") &&
+          dateData.endDate[1] >= days.format("YYYY.MM.DD")
+        ) {
+          className = "date dateCycle";
+        } else {
+          className = "date";
+        }
         break;
       case "day":
         className =
@@ -91,21 +86,6 @@ const Calendar = (type: { type: string }): JSX.Element => {
             : "date";
         break;
     }
-    const percentDiv = (date: string) => {
-      if (className === "date dateCycle") {
-        return {
-          __html: `${calendargetGoal(date)}%`,
-        };
-      } else if (className === "date active") {
-        return {
-          __html: `${calendargetGoal(date)}%`,
-        };
-      } else {
-        return {
-          __html: "",
-        };
-      }
-    };
 
     return (
       <td
@@ -122,12 +102,15 @@ const Calendar = (type: { type: string }): JSX.Element => {
             <div
               style={{
                 backgroundColor: `rgb(95,121,211, ${
-                  30 + calendargetGoal(days.format("YYYY-MM-DD")) * (7 / 10)
+                  30 + calendarGetGoal(days.format("YYYY-MM-DD")) * (7 / 10)
                 }%)`,
               }}
               className="calendar-percent-item-text"
-              dangerouslySetInnerHTML={percentDiv(days.format("YYYY-MM-DD"))}
-            />
+            >
+              {className === "date dateCycle" || className === "date active"
+                ? `${calendarGetGoal(days.format("YYYY-MM-DD"))}%`
+                : ""}
+            </div>
           </div>
         </div>
       </td>
@@ -173,7 +156,7 @@ const Calendar = (type: { type: string }): JSX.Element => {
           src={arrow}
           alt="arrow"
           onClick={() => {
-            setMoment(getMoment.clone().subtract(1, "month"));
+            setMoment(getMoment.clone().add(-1, "month"));
           }}
         />
         <span>{getMoment.format("YYYY년 MM월")}</span>

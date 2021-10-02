@@ -3,14 +3,15 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import StatItem from "./StatItem/StatItem";
 import { activeTabState, dateDataState } from "recoil/stat";
 import { IDateDataTypes } from "types/stat.types";
+import { ETabMenu } from "lib/enum/stat";
 
 import "./Stat.scss";
 
 const Stat = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useRecoilState<number>(activeTabState);
+  const [activeTab, setActiveTab] = useRecoilState<ETabMenu>(activeTabState);
   const dateData = useRecoilValue<IDateDataTypes>(dateDataState);
 
-  const handleMenu = useCallback((id: number) => {
+  const handleMenu = useCallback((id: ETabMenu) => {
     setActiveTab(id);
   }, []);
 
@@ -18,7 +19,7 @@ const Stat = (): JSX.Element => {
     <div className="stat">
       <div className="stat-tab">
         <div
-          onClick={() => handleMenu(0)}
+          onClick={() => handleMenu(ETabMenu.month)}
           className={
             activeTab === 0 ? "stat-tab-item isMainTab" : "stat-tab-item"
           }
@@ -26,7 +27,7 @@ const Stat = (): JSX.Element => {
           월간
         </div>
         <div
-          onClick={() => handleMenu(1)}
+          onClick={() => handleMenu(ETabMenu.week)}
           className={
             activeTab === 1 ? "stat-tab-item isMainTab" : "stat-tab-item"
           }
@@ -34,7 +35,7 @@ const Stat = (): JSX.Element => {
           주간
         </div>
         <div
-          onClick={() => handleMenu(2)}
+          onClick={() => handleMenu(ETabMenu.day)}
           className={
             activeTab === 2 ? "stat-tab-item isMainTab" : "stat-tab-item"
           }

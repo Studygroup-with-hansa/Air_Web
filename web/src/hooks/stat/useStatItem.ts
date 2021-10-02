@@ -1,5 +1,5 @@
 const useStatItem = () => {
-  const calendargetGoal = (date: string): number => {
+  const calendarGetGoal = (date: string): number => {
     let goal: number = 0;
 
     stat.data.stats.forEach((data) => {
@@ -91,7 +91,7 @@ const useStatItem = () => {
     },
   };
 
-  return { calendargetGoal, changeTimeType, stat };
+  return { calendarGetGoal, changeTimeType, stat };
 };
 
 export default useStatItem;

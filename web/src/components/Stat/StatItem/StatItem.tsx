@@ -9,7 +9,8 @@ import "./StatItem.scss";
 
 const StatItem = ({ startDate, endDate }: IDateTypes) => {
   const { changeTimeType } = useStatItem();
-  const stat = useStatItem(); //나중에 서버 값으로 변경
+  const { stat } = useStatItem(); //나중에 서버 값으로 변경
+  const statData = stat.data;
 
   const activeTab = useRecoilValue<number>(activeTabState);
 
@@ -30,11 +31,11 @@ const StatItem = ({ startDate, endDate }: IDateTypes) => {
           <div>
             <div className="statItem-right-content-title">
               총 공부 시간
-              <div>{stat.stat.data.totalTime}</div>
+              <div>{statData.totalTime}</div>
             </div>
             <div className="statItem-right-content-title">
               평균 목표 달성률
-              <div>{stat.stat.data.goals}%</div>
+              <div>{statData.goals}%</div>
             </div>
           </div>
           <div className="statItem-right-content-item">
