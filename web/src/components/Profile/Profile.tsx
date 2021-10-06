@@ -1,21 +1,21 @@
 import defaultProfile from "assets/defaultProfile.svg";
-import { Dropdown } from "react-dropdown-now";
+// import { Dropdown } from "react-dropdown-now";
 
 import "./Profile.scss";
 
 const Profile = () => {
-  const option = [
-    "one",
-    "two",
-    "two",
-    "two",
-    "two",
-    "two",
-    "two",
-    "two",
-    "two",
-    "three",
-  ];
+  // const option = [
+  //   "one",
+  //   "two",
+  //   "two",
+  //   "two",
+  //   "two",
+  //   "two",
+  //   "two",
+  //   "two",
+  //   "two",
+  //   "three",
+  // ];
   return (
     <div className="profile">
       <div className="profile-header">내 프로필</div>
@@ -24,8 +24,8 @@ const Profile = () => {
           <div className="profile-contents-view-img">
             <img src={defaultProfile} alt="defaultProfile" />
           </div>
-          <div className="profile-contents-view-name">name</div>
           <div className="profile-contents-view-title">title</div>
+          <div className="profile-contents-view-name">name</div>
         </div>
         <div className="profile-contents-input">
           <div className="profile-contents-input-item">
@@ -36,7 +36,8 @@ const Profile = () => {
           </div>
           <div className="profile-contents-input-item">
             <div>칭호 선택</div>
-            <Dropdown
+            <div className="profile-contents-input-item-title">asdf</div>
+            {/* <Dropdown
               placeholder="Select an option"
               className="my-className"
               options={option}
@@ -47,13 +48,11 @@ const Profile = () => {
                 console.log("closedBySelection?:", closedBySelection)
               }
               onOpen={() => console.log("open!")}
-            />
+            /> */}
           </div>
-          <div className="">
+          <div>
             <div>프로필 사진</div>
-            <div>
-              <input type="file" name="" id="" />
-            </div>
+            <div className="profile-contents-input-image"></div>
           </div>
         </div>
       </div>
