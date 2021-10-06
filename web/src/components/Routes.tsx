@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import PostPage from "pages/Post";
-import MainPage from "pages/Main/MainPage";
+import MainPage from "pages/Main";
 import StatPage from "pages/Stat";
 import SignInPage from "components/SignIn";
 import SignUpPage from "components/SignUp";

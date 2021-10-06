@@ -1,7 +1,6 @@
 interface IStyleVariable {
   white: string;
   black: string;
-  sideBar: string;
   main: string;
   lightMain: string;
   darkMain: string;
@@ -15,7 +14,6 @@ interface IStyleVariable {
 export const styleVariable: IStyleVariable = {
   white: "#ffffff",
   black: "#333333",
-  sideBar: "#f8f8fa",
   main: "#5F79D3",
   lightMain: "#84AEFF",
   darkMain: "#384E9B",

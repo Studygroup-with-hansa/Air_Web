@@ -1,4 +1,36 @@
 .profile {
   height: 100vh;
   margin-left: 100px;
+  padding: 50px 100px;
+
+  &-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+  &-contents {
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--stroke);
+    background-color: var(--white);
+
+    &-view {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      align-items: center;
+      justify-content: center;
+      padding: 35px;
+      border-right: 1px solid var(--stroke);
+
+      &-name {
+        margin: 15px 0;
+        font-size: 20px;
+      }
+      &-title {
+        font-size: 16px;
+        color: var(--subText);
+      }
+    }
+  }
 }
