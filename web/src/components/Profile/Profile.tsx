@@ -21,18 +21,21 @@ const title = [
 ];
 
 const Profile = () => {
+  const [name, setName] = useState<string>("");
   const [mainTitle, setMainTitle] = useState<string>("");
   const [fileUrl, setFileUrl] = useState<string | null>(null);
 
+  const handleInput = (e: { target: { value: string } }) => {
+    setName(e.target.value);
+  };
+  const handleTitle = (data: string) => {
+    setMainTitle(data);
+  };
   const inputImage = useCallback((event) => {
     const imageFile = event.target.files[0];
     const imageUrl = URL.createObjectURL(imageFile);
     setFileUrl(imageUrl);
   }, []);
-
-  const handleTitle = (data: string) => {
-    setMainTitle(data);
-  };
 
   return (
     <div className="profile">
@@ -48,7 +51,7 @@ const Profile = () => {
           <div className="profile-contents-view-title">
             {!mainTitle ? "칭호를 선택해주세요" : mainTitle}
           </div>
-          <div className="profile-contents-view-name">name</div>
+          <div className="profile-contents-view-name">{name}</div>
         </div>
         <div className="profile-contents-input">
           <div className="profile-contents-input-item">
@@ -57,7 +60,7 @@ const Profile = () => {
                 닉네임<span className="infotext">8자 이내로 작성해주세요</span>
               </div>
               <div className="profile-contents-input-item-text">
-                <input type="text" />
+                <input type="text" onChange={handleInput} />
               </div>
             </div>
             <div>
@@ -81,7 +84,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="profile-contents-input-item">
+          <div className="profile-contents-input-item right">
             <div>
               <div className="profile-contents-input-item-title">칭호</div>
               <div className="profile-contents-input-item-list">
