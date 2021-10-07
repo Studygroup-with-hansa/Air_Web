@@ -1,4 +1,5 @@
 import defaultProfile from "assets/defaultProfile.svg";
+import ImageInputBox from "components/Common/ImageInput";
 import { useCallback, useState } from "react";
 
 import "./Profile.scss";
@@ -68,7 +69,8 @@ const Profile = () => {
                 프로필 사진
               </div>
               <div className="profile-contents-input-item-image">
-                <label
+                <ImageInputBox />
+                {/* <label
                   className="profile-contents-input-item-image-button"
                   htmlFor="input-file"
                 >
@@ -80,7 +82,7 @@ const Profile = () => {
                   accept=".jpeg, .jpg, .png"
                   id="input-file"
                   onChange={inputImage}
-                />
+                /> */}
               </div>
             </div>
           </div>
