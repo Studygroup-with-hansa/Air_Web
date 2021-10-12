@@ -4,23 +4,6 @@ import { useCallback, useState } from "react";
 
 import "./Profile.scss";
 
-const title = [
-  "칭호1",
-  "칭호2",
-  "칭호3",
-  "칭호4",
-  "칭호5",
-  "칭호6",
-  "칭호7",
-  "칭호8",
-  "칭호9",
-  "칭호10",
-  "칭호11",
-  "칭호12",
-  "칭호13",
-  "칭호14",
-];
-
 const Profile = () => {
   const [name, setName] = useState<string>("");
   const [mainTitle, setMainTitle] = useState<string>("");
@@ -48,9 +31,6 @@ const Profile = () => {
               src={!fileUrl ? defaultProfile : fileUrl}
               alt="defaultProfile"
             />
-          </div>
-          <div className="profile-contents-view-title">
-            {!mainTitle ? "칭호를 선택해주세요" : mainTitle}
           </div>
           <div className="profile-contents-view-name">{name}</div>
         </div>
@@ -83,27 +63,6 @@ const Profile = () => {
                   id="input-file"
                   onChange={inputImage}
                 /> */}
-              </div>
-            </div>
-          </div>
-          <div className="profile-contents-input-item right">
-            <div>
-              <div className="profile-contents-input-item-title">칭호</div>
-              <div className="profile-contents-input-item-list">
-                {title.map((data) => {
-                  return (
-                    <div
-                      onClick={() => handleTitle(data)}
-                      className={
-                        mainTitle === data
-                          ? "profile-contents-input-item-list-content mainTitle"
-                          : "profile-contents-input-item-list-content"
-                      }
-                    >
-                      {data}
-                    </div>
-                  );
-                })}
               </div>
             </div>
           </div>

@@ -33,13 +33,9 @@
       }
       &-name {
         height: 26.8px;
+        margin-top: 25px;
         font-size: 20px;
         font-weight: bold;
-      }
-      &-title {
-        margin: 15px 0;
-        font-size: 16px;
-        color: var(--subText);
       }
     }
     &-input {
@@ -48,7 +44,7 @@
 
       &-item {
         float: left;
-        width: 48%;
+        width: 100%;
 
         &-title {
           height: 90%;
