@@ -7,6 +7,8 @@ import {
   useRef,
   useState,
 } from "react";
+import { useRecoilState } from "recoil";
+import { profileImageState } from "recoil/profile";
 
 export interface IFileTypes {
   id: number;
@@ -15,10 +17,11 @@ export interface IFileTypes {
 
 const useImageInputBox = () => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [imageInputRequest, setImageInputRequest] = useState<string>("");
   const [postRequestPicture, setPostRequestPicture] = useState<IFileTypes[]>(
     []
   );
+  const [fileObject, setFileObject] =
+    useRecoilState<File | undefined>(profileImageState);
 
   const dragRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const fileId: MutableRefObject<number> = useRef<number>(0);
@@ -46,20 +49,13 @@ const useImageInputBox = () => {
             object: file,
           },
         ];
+
+        setFileObject(file);
       }
 
       setPostRequestPicture((prevRequest) => [...prevRequest, ...tempFiles]);
     },
-    [setImageInputRequest, setPostRequestPicture]
-  );
-
-  const handleFilterFile = useCallback(
-    (id: number): void => {
-      setPostRequestPicture((prevRequest) =>
-        prevRequest.filter((file: IFileTypes) => file.id !== id)
-      );
-    },
-    [setPostRequestPicture]
+    [, setPostRequestPicture]
   );
 
   const handleDragIn = useCallback((e: DragEvent): void => {
@@ -121,9 +117,8 @@ const useImageInputBox = () => {
   return {
     isDragging,
     dragRef,
-    postRequestPicture,
+    fileObject,
     onChangeFiles,
-    handleFilterFile,
   };
 };
 

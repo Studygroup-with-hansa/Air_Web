@@ -1,25 +1,20 @@
-import defaultProfile from "assets/defaultProfile.svg";
 import ImageInputBox from "components/Common/ImageInput";
-import { useCallback, useState } from "react";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { profileImageState } from "recoil/profile";
 
 import "./Profile.scss";
 
 const Profile = () => {
+  const profileImage = useRecoilValue<File | undefined>(profileImageState);
   const [name, setName] = useState<string>("");
-  const [mainTitle, setMainTitle] = useState<string>("");
-  const [fileUrl, setFileUrl] = useState<string | null>(null);
+
+  let imageUrl: string | undefined = undefined;
+  if (profileImage) imageUrl = URL.createObjectURL(profileImage);
 
   const handleInput = (e: { target: { value: string } }) => {
     setName(e.target.value);
   };
-  const handleTitle = (data: string) => {
-    setMainTitle(data);
-  };
-  const inputImage = useCallback((event) => {
-    const imageFile = event.target.files[0];
-    const imageUrl = URL.createObjectURL(imageFile);
-    setFileUrl(imageUrl);
-  }, []);
 
   return (
     <div className="profile">
@@ -27,10 +22,7 @@ const Profile = () => {
       <div className="profile-contents">
         <div className="profile-contents-view">
           <div className="profile-contents-view-img">
-            <img
-              src={!fileUrl ? defaultProfile : fileUrl}
-              alt="defaultProfile"
-            />
+            <img src={!imageUrl ? "" : imageUrl} alt="" />
           </div>
           <div className="profile-contents-view-name">{name}</div>
         </div>
@@ -50,19 +42,6 @@ const Profile = () => {
               </div>
               <div className="profile-contents-input-item-image">
                 <ImageInputBox />
-                {/* <label
-                  className="profile-contents-input-item-image-button"
-                  htmlFor="input-file"
-                >
-                  <div>이미지 선택</div>
-                </label>
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  accept=".jpeg, .jpg, .png"
-                  id="input-file"
-                  onChange={inputImage}
-                /> */}
               </div>
             </div>
           </div>

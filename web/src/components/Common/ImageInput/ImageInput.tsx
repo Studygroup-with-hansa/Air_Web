@@ -1,5 +1,3 @@
-import { useCallback } from "react";
-import { RiCloseFill } from "react-icons/ri";
 import useImageInputBox from "hooks/image/useImageInputBox";
 
 import "./ImageInput.scss";
@@ -10,20 +8,7 @@ export interface IFileTypes {
 }
 
 const ImageInput = () => {
-  const {
-    isDragging,
-    dragRef,
-    postRequestPicture,
-    onChangeFiles,
-    handleFilterFile,
-  } = useImageInputBox();
-
-  const checkNameLength = useCallback((name: string) => {
-    if (name.length > 25) {
-      return name.slice(0, 25).concat("...");
-    }
-    return name;
-  }, []);
+  const { isDragging, dragRef, onChangeFiles } = useImageInputBox();
 
   return (
     <div className="imageInputBox">
@@ -44,30 +29,10 @@ const ImageInput = () => {
             id="fileUpload"
             style={{ display: "none" }}
             accept="image/*"
-            multiple={true}
+            multiple={false}
             onChange={onChangeFiles}
           />
         </label>
-      </div>
-
-      <div className="imageInputBox-files">
-        {postRequestPicture.length > 0 &&
-          postRequestPicture.map((file: IFileTypes) => {
-            const {
-              id,
-              object: { name },
-            } = file;
-
-            return (
-              <div className="imageInputBox-files-item" key={id}>
-                <div>{checkNameLength(name)}</div>
-                <RiCloseFill
-                  className="imageInputBox-files-filter"
-                  onClick={() => handleFilterFile(id)}
-                />
-              </div>
-            );
-          })}
       </div>
     </div>
   );
