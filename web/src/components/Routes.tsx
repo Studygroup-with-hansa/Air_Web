@@ -1,9 +1,10 @@
 import { Route, Switch } from "react-router-dom";
 import PostPage from "pages/Post";
-import MainPage from "pages/Main/MainPage";
+import MainPage from "pages/Main";
 import StatPage from "pages/Stat";
 import SignInPage from "components/SignIn";
 import SignUpPage from "components/SignUp";
+import ProfilePage from "pages/Profile";
 
 const Routes = (): JSX.Element => {
   return (
@@ -13,7 +14,7 @@ const Routes = (): JSX.Element => {
       <Route exact path="/" component={MainPage} />
       <Route exact path="/post" component={PostPage} />
       <Route exact path="/stat" component={StatPage} />
-      {/* <Route exact path="/profile" component={profilePage} /> */}
+      <Route exact path="/profile" component={ProfilePage} />
       {/* <Route exact path="/setting" component={settingPage} /> */}
     </Switch>
   );
