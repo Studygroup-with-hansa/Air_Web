@@ -2,6 +2,7 @@ import ImageInputBox from "components/Common/ImageInput";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { profileImageState } from "recoil/profile";
+import defaultProfile from "assets/defaultProfile.svg";
 
 import "./Profile.scss";
 
@@ -22,7 +23,7 @@ const Profile = () => {
       <div className="profile-contents">
         <div className="profile-contents-view">
           <div className="profile-contents-view-img">
-            <img src={!imageUrl ? "" : imageUrl} alt="" />
+            <img src={!imageUrl ? defaultProfile : imageUrl} alt="" />
           </div>
           <div className="profile-contents-view-name">{name}</div>
         </div>
