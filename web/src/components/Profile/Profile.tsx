@@ -1,7 +1,8 @@
-import ImageInputBox from "components/Common/ImageInput";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
+import ImageInputBox from "components/Common/ImageInput";
 import { profileImageState } from "recoil/profile";
+import { postNameLength } from "validation/profile.validation";
 import defaultProfile from "assets/defaultProfile.svg";
 
 import "./Profile.scss";
@@ -23,7 +24,10 @@ const Profile = () => {
       <div className="profile-contents">
         <div className="profile-contents-view">
           <div className="profile-contents-view-img">
-            <img src={!imageUrl ? defaultProfile : imageUrl} alt="" />
+            <img
+              src={!imageUrl ? defaultProfile : imageUrl}
+              alt="profile image"
+            />
           </div>
           <div className="profile-contents-view-name">{name}</div>
         </div>
@@ -31,7 +35,10 @@ const Profile = () => {
           <div className="profile-contents-input-item">
             <div>
               <div className="profile-contents-input-item-title">
-                닉네임<span className="infotext">8자 이내로 작성해주세요</span>
+                닉네임
+                <span className="infotext">
+                  {postNameLength(name, 8) ? "" : "8자 이내로 작성해주세요"}
+                </span>
               </div>
               <div className="profile-contents-input-item-text">
                 <input type="text" onChange={handleInput} />
