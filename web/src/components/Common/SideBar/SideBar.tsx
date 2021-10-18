@@ -1,16 +1,27 @@
+import { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { History } from "history";
 import stat from "assets/stat.svg";
 import post from "assets/post.svg";
 import profile from "assets/profile.svg";
-import setting from "assets/setting.svg";
-import { useCallback } from "react";
-import { useHistory } from "react-router-dom";
-import { History } from "history";
+import dark from "assets/dark.svg";
+import light from "assets/light.svg";
 
 import "./SideBar.scss";
 
 const SideBar = (): JSX.Element => {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const history: History = useHistory();
   const path: string = window.location.pathname;
+  const handleDarkMode = () => {
+    if (isDarkMode) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      setIsDarkMode(false);
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      setIsDarkMode(true);
+    }
+  };
 
   const handleIcon = useCallback(
     (url: string) => {
@@ -54,13 +65,8 @@ const SideBar = (): JSX.Element => {
           alt="profile"
         />
       </div>
-      <div>
-        <img
-          className={path === "/setting" ? "isMain" : ""}
-          onClick={() => handleIcon("/setting")}
-          src={setting}
-          alt="setting"
-        />
+      <div className="sideBar-darkMode" onClick={handleDarkMode}>
+        <img src={isDarkMode ? dark : light} alt="darkmode" />
       </div>
     </div>
   );
