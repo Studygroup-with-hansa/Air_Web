@@ -1,6 +1,6 @@
 import { IMainListTypes } from "types/mainList.types";
 import MainListItem from "./MainListItem";
-import Crown from "components/Common/Svg/Crown";
+import Crown from "assets/ICrown";
 
 import "./MainList.scss";
 

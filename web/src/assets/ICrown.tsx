@@ -1,4 +1,4 @@
-const Crown = (props: { props: string }): JSX.Element => {
+const ICrown = (props: { props: string }): JSX.Element => {
   return (
     <svg
       style={{
@@ -18,4 +18,4 @@ const Crown = (props: { props: string }): JSX.Element => {
   );
 };
 
-export default Crown;
+export default ICrown;

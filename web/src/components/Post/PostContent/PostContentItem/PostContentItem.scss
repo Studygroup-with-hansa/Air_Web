@@ -93,15 +93,16 @@
         width: 95%;
         height: 35px;
         padding: 0 15px;
+        margin-right: 10px;
         border: 1px solid var(--stroke);
         border-radius: 40px;
+        color: var(--black);
         background-color: var(--lightGray);
       }
-      img {
-        margin-top: 7px;
-        float: right;
-        cursor: pointer;
-      }
+    }
+    img {
+      float: right;
+      cursor: pointer;
     }
   }
 }

@@ -1,4 +1,6 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+import { useRecoilState } from "recoil";
+import { darkModeState } from "recoil/darkMode";
 import { useHistory } from "react-router-dom";
 import { History } from "history";
 import stat from "assets/stat.svg";
@@ -10,7 +12,7 @@ import light from "assets/light.svg";
 import "./SideBar.scss";
 
 const SideBar = (): JSX.Element => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const [isDarkMode, setIsDarkMode] = useRecoilState<boolean>(darkModeState);
   const history: History = useHistory();
   const path: string = window.location.pathname;
   const handleDarkMode = () => {

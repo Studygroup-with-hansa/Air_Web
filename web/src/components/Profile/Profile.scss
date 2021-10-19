@@ -60,6 +60,8 @@
           input {
             width: 100%;
             border: none;
+            color: var(--black);
+            background-color: var(--white);
           }
         }
         &-image {
@@ -110,10 +112,10 @@
     &-btn {
       float: right;
       margin-top: 25px;
-      padding: 5px 15px;
+      padding: 8px 15px;
       border-radius: 5px;
       font-weight: bold;
-      color: var(--white) !important;
+      color: var(--text) !important;
       cursor: pointer;
       opacity: 50%;
       background-color: var(--main);
