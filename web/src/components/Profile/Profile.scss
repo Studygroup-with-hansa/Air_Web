@@ -11,6 +11,7 @@
   &-contents {
     display: flex;
     height: 80vh;
+    max-height: 580px;
     min-height: 550px;
     border-radius: 10px;
     border: 1px solid var(--stroke);
@@ -110,6 +111,7 @@
       }
     }
     &-btn {
+      bottom: 0;
       float: right;
       margin-top: 25px;
       padding: 8px 15px;
