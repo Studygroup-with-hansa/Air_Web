@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
-import Calendar from "components/Common/Calendar";
 import { activeTabState, totalTimeState } from "recoil/stat";
+import Calendar from "components/Common/Calendar";
 import Chart from "components/Common/Chart";
 import { IDateTypes } from "types/stat.types";
 import useStatItem from "hooks/stat/useStatItem";

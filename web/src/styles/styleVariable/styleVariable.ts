@@ -6,6 +6,8 @@ interface IStyleVariable {
   darkMain: string;
   stroke: string;
   darkStroke: string;
+  hover: string;
+  text: string;
   subText: string;
   darkGray: string;
   red: string;
@@ -19,6 +21,8 @@ export const styleVariable: IStyleVariable = {
   darkMain: "#384E9B",
   stroke: "#f1f1f3",
   darkStroke: "#D9DFE5",
+  hover: "#f6f6f6",
+  text: "#ffffff",
   subText: "#6C757D",
   darkGray: "#292B30",
   red: "#E92121",

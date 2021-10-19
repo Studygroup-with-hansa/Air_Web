@@ -11,6 +11,7 @@
   &-contents {
     display: flex;
     height: 80vh;
+    max-height: 580px;
     min-height: 550px;
     border-radius: 10px;
     border: 1px solid var(--stroke);
@@ -60,6 +61,8 @@
           input {
             width: 100%;
             border: none;
+            color: var(--black);
+            background-color: var(--white);
           }
         }
         &-image {
@@ -108,12 +111,13 @@
       }
     }
     &-btn {
+      bottom: 0;
       float: right;
       margin-top: 25px;
-      padding: 5px 15px;
+      padding: 8px 15px;
       border-radius: 5px;
       font-weight: bold;
-      color: var(--white) !important;
+      color: var(--text) !important;
       cursor: pointer;
       opacity: 50%;
       background-color: var(--main);
