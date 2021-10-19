@@ -7,6 +7,7 @@ import { AiOutlineShareAlt } from "react-icons//ai";
 import Chart from "components/Common/Chart";
 
 import "./PostContentItem.scss";
+import StatItem from "components/Stat/StatItem/StatItem";
 
 const PostContentItem = (): JSX.Element => {
   return (
@@ -27,7 +28,10 @@ const PostContentItem = (): JSX.Element => {
           <img src={more} alt="more" />
         </div>
       </div>
-      <div className="postContentItem-contents">
+      <div>
+        <StatItem startDate="2021.10.21" endDate="2021.10.21" />
+      </div>
+      {/* <div className="postContentItem-contents">
         <div className="postContentItem-contents-chart">
           <div className="postContentItem-contents-chart-time">
             <div className="postContentItem-contents-chart-time-date">
@@ -40,7 +44,7 @@ const PostContentItem = (): JSX.Element => {
           </div>
         </div>
         <div>content</div>
-      </div>
+      </div> */}
       <div>
         <div className="postContentItem-bottom">
           <label>
