@@ -8,7 +8,7 @@ import useStatItem from "hooks/stat/useStatItem";
 
 import "./Calendar.scss";
 
-const Calendar = (type: { type: string }): JSX.Element => {
+const Calendar = (props: { type: string; isControl: boolean }): JSX.Element => {
   const { stat, calendarGetGoal, changeTimeType } = useStatItem();
   const statData = stat.data;
 
@@ -97,9 +97,11 @@ const Calendar = (type: { type: string }): JSX.Element => {
     return (
       <td
         key={index}
-        onClick={() => {
-          handleDate(days);
-        }}
+        // onClick={() => {
+        //   props.isControl ?
+        //   handleDate(days):
+        // }}
+        onClick={props.isControl ? () => handleDate(days) : () => {}}
         className={className}
       >
         <div className="calendar-date">{days.format("D")}</div>
@@ -147,7 +149,7 @@ const Calendar = (type: { type: string }): JSX.Element => {
                   </td>
                 );
               } else {
-                return dateArr(index, days, type.type);
+                return dateArr(index, days, props.type);
               }
             })}
         </tr>
@@ -159,22 +161,30 @@ const Calendar = (type: { type: string }): JSX.Element => {
   return (
     <div className="calendar">
       <div className="calendar-control">
-        <img
-          src={arrow}
-          alt="arrow"
-          onClick={() => {
-            setMoment(getMoment.clone().add(-1, "month"));
-          }}
-        />
+        {props.isControl ? (
+          <img
+            src={arrow}
+            alt="arrow"
+            onClick={() => {
+              setMoment(getMoment.clone().add(-1, "month"));
+            }}
+          />
+        ) : (
+          <></>
+        )}
         <span>{getMoment.format("YYYY년 MM월")}</span>
-        <img
-          src={arrow}
-          alt="arrow"
-          style={{ transform: "rotate(180deg)" }}
-          onClick={() => {
-            setMoment(getMoment.clone().add(1, "month"));
-          }}
-        />
+        {props.isControl ? (
+          <img
+            src={arrow}
+            alt="arrow"
+            style={{ transform: "rotate(180deg)" }}
+            onClick={() => {
+              setMoment(getMoment.clone().add(1, "month"));
+            }}
+          />
+        ) : (
+          <></>
+        )}
       </div>
       <table>
         <th>

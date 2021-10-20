@@ -15,9 +15,9 @@ const StatItem = ({ startDate, endDate }: IDateTypes) => {
   const totalTime = useRecoilValue<string>(totalTimeState);
 
   const tabMenu: { [key: number]: JSX.Element } = {
-    0: <Calendar type="month" />,
-    1: <Calendar type="week" />,
-    2: <Calendar type="day" />,
+    0: <Calendar type="month" isControl={true} />,
+    1: <Calendar type="week" isControl={true} />,
+    2: <Calendar type="day" isControl={true} />,
   };
 
   return (
