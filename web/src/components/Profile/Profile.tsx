@@ -36,12 +36,10 @@ const Profile = () => {
             <div>
               <div className="profile-contents-input-item-title">
                 닉네임
-                <span className="infotext">
-                  {postNameLength(name, 8) ? "" : "8자 이내로 작성해주세요"}
-                </span>
+                <span className="infotext">8자 이내로 작성해주세요</span>
               </div>
               <div className="profile-contents-input-item-text">
-                <input type="text" onChange={handleInput} />
+                <input type="text" maxLength={8} onChange={handleInput} />
               </div>
             </div>
             <div>
