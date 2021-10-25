@@ -1,5 +1,10 @@
 .postStatItem {
+  display: flex;
   &-calendar {
     width: 50%;
+  }
+  &-chart {
+    width: 50%;
+    height: 450px;
   }
 }
