@@ -7,7 +7,7 @@ import PostStatItem from "./PostStatItem";
 
 import "./PostContentItem.scss";
 
-const PostContentItem = (): JSX.Element => {
+const PostContentItem = (props: { isMine: boolean }): JSX.Element => {
   return (
     <div className="postContentItem">
       <div className="postContentItem-header">
@@ -23,7 +23,7 @@ const PostContentItem = (): JSX.Element => {
           </div>
         </div>
         <div className="postContentItem-header-more">
-          <img src={more} alt="more" />
+          {props.isMine ? <img src={more} alt="more" /> : <></>}
         </div>
       </div>
       <div>

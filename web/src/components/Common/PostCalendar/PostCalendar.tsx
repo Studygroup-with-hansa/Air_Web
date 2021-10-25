@@ -3,14 +3,16 @@ import moment, { Moment } from "moment";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
 import { dateDataState, statDateState, totalTimeState } from "recoil/stat";
-import arrow from "assets/arrow.svg";
 import useStatItem from "hooks/stat/useStatItem";
+import usePostItem from "hooks/post/usePostItem";
 
-import "./Calendar.scss";
+import "./PostCalendar.scss";
 
-const Calendar = (props: { type: string }): JSX.Element => {
+const PostCalendar = (): JSX.Element => {
   const { stat, calendarGetGoal, changeTimeType } = useStatItem();
+  const { getPost } = usePostItem();
   const statData = stat.data;
+  const calandarType = getPost.data.calandarType;
 
   const [getMoment, setMoment] = useState<Moment>(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
@@ -95,15 +97,7 @@ const Calendar = (props: { type: string }): JSX.Element => {
     }
 
     return (
-      <td
-        key={index}
-        // onClick={() => {
-        //   props.isControl ?
-        //   handleDate(days):
-        // }}
-        onClick={() => handleDate(days)}
-        className={className}
-      >
+      <td key={index} onClick={() => handleDate(days)} className={className}>
         <div className="calendar-date">{days.format("D")}</div>
         <div className="calendar-percent">
           <div className="calendar-percent-item">
@@ -149,7 +143,7 @@ const Calendar = (props: { type: string }): JSX.Element => {
                   </td>
                 );
               } else {
-                return dateArr(index, days, props.type);
+                return dateArr(index, days, calandarType);
               }
             })}
         </tr>
@@ -161,22 +155,7 @@ const Calendar = (props: { type: string }): JSX.Element => {
   return (
     <div className="calendar">
       <div className="calendar-control">
-        <img
-          src={arrow}
-          alt="arrow"
-          onClick={() => {
-            setMoment(getMoment.clone().add(-1, "month"));
-          }}
-        />
         <span>{getMoment.format("YYYY년 MM월")}</span>
-        <img
-          src={arrow}
-          alt="arrow"
-          style={{ transform: "rotate(180deg)" }}
-          onClick={() => {
-            setMoment(getMoment.clone().add(1, "month"));
-          }}
-        />
       </div>
       <table>
         <th>
@@ -196,4 +175,4 @@ const Calendar = (props: { type: string }): JSX.Element => {
   );
 };
 
-export default Calendar;
+export default PostCalendar;

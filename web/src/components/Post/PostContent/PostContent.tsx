@@ -5,8 +5,8 @@ import "./PostContent.scss";
 const PostContent = (): JSX.Element => {
   return (
     <div className="postContent">
-      <PostContentItem />
-      <PostContentItem />
+      <PostContentItem isMine={true} />
+      <PostContentItem isMine={false} />
     </div>
   );
 };
