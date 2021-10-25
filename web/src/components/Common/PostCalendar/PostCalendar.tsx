@@ -12,7 +12,7 @@ const PostCalendar = (): JSX.Element => {
   const { stat, calendarGetGoal, changeTimeType } = useStatItem();
   const { getPost } = usePostItem();
   const statData = stat.data;
-  const calandarType = getPost.data.calandarType;
+  const postData = getPost.data;
 
   const [getMoment, setMoment] = useState<Moment>(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
@@ -32,38 +32,6 @@ const PostCalendar = (): JSX.Element => {
   useEffect(() => {
     setTotalTime(changeTimeType(statData.totalTime));
   }, []);
-
-  const handleDate = useCallback(
-    (date: Moment) => {
-      setStatDate({
-        activeDate: date.format("YYYY.MM.DD"),
-        dateArray: date.format("YYYY.MM.DD").split("."),
-      });
-      if (statDate.activeDate === date.format("YYYY.MM.DD")) {
-        return;
-      }
-      startDate.splice(2, 1, date.format("YYYY.MM.DD"));
-      endDate.splice(2, 1, date.format("YYYY.MM.DD"));
-      startDate.splice(
-        0,
-        1,
-        moment(date).startOf("month").format("YYYY.MM.DD")
-      );
-      startDate.splice(1, 1, date.startOf("week").format("YYYY.MM.DD"));
-      endDate.splice(0, 1, moment(date).endOf("month").format("YYYY.MM.DD"));
-      endDate.splice(
-        1,
-        1,
-        date.startOf("week").add(6, "days").format("YYYY.MM.DD")
-      );
-      setDateData({
-        startDate: startDate,
-        endDate: endDate,
-      });
-      setTotalTime(changeTimeType(statData.totalTime));
-    },
-    [statDate.activeDate]
-  );
 
   const dateArr = (index: number, days: Moment, type: string) => {
     switch (type) {
@@ -97,7 +65,7 @@ const PostCalendar = (): JSX.Element => {
     }
 
     return (
-      <td key={index} onClick={() => handleDate(days)} className={className}>
+      <td key={index} className={className}>
         <div className="calendar-date">{days.format("D")}</div>
         <div className="calendar-percent">
           <div className="calendar-percent-item">
@@ -143,7 +111,7 @@ const PostCalendar = (): JSX.Element => {
                   </td>
                 );
               } else {
-                return dateArr(index, days, calandarType);
+                return dateArr(index, days, postData.calandarType);
               }
             })}
         </tr>
