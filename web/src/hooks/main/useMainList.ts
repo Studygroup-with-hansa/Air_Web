@@ -1,5 +1,5 @@
 const useMainList = () => {
-  const EveryMainListDumi: {
+  const EveryMainListDummy: {
     rank: string;
     name: string;
     week: number[];
@@ -85,7 +85,7 @@ const useMainList = () => {
     },
   ];
 
-  return { EveryMainListDumi };
+  return { EveryMainListDummy };
 };
 
 export default useMainList;

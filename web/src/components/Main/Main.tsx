@@ -4,7 +4,7 @@ import MainList from "./MainList";
 import "./Main.scss";
 
 const Main = (): JSX.Element => {
-  const { EveryMainListDumi } = useMainList();
+  const { EveryMainListDummy } = useMainList();
 
   return (
     <div className="main">
@@ -31,7 +31,7 @@ const Main = (): JSX.Element => {
           isMine={true}
         />
         <div className="main-list-content">
-          {EveryMainListDumi.map((data) => {
+          {EveryMainListDummy.map((data) => {
             return (
               <>
                 <MainList
