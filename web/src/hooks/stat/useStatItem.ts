@@ -2,7 +2,7 @@ const useStatItem = () => {
   const calendarGetGoal = (date: string): number => {
     let goal: number = 0;
 
-    stat.data.stats.forEach((data) => {
+    getStat.data.stats.forEach((data) => {
       //나중에 서버 값으로 바꾸기
       if (data.date === date) goal = data.goal;
     });
@@ -22,7 +22,7 @@ const useStatItem = () => {
     return `${hour}H ${min}M ${sec}S`;
   };
 
-  const stat = {
+  const getStat = {
     status: 200,
     detail: "OK",
     data: {
@@ -101,7 +101,7 @@ const useStatItem = () => {
     },
   };
 
-  return { calendarGetGoal, changeTimeType, stat };
+  return { calendarGetGoal, changeTimeType, getStat };
 };
 
 export default useStatItem;

@@ -1,25 +1,30 @@
-import img from "assets/ivory.png";
 import more from "assets/more.svg";
 import send from "assets/send.svg";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { VscComment } from "react-icons/vsc";
 import PostStatItem from "./PostStatItem";
+import usePostItem from "hooks/post/usePostItem";
 
 import "./PostContentItem.scss";
 
 const PostContentItem = (props: { isMine: boolean }): JSX.Element => {
+  const { getPost } = usePostItem();
+  const postData = getPost.data;
+
   return (
     <div className="postContentItem">
       <div className="postContentItem-header">
         <div>
           <img
             className="postContentItem-header-img"
-            src={img}
+            src={postData.userImage}
             alt="profile img"
           />
           <div className="postContentItem-header-title">
-            <div className="postContentItem-header-title-name">박상아</div>
-            <div>2021.09.07</div>
+            <div className="postContentItem-header-title-name">
+              {postData.username}
+            </div>
+            <div>{postData.postDate.replace("-", ".")}</div>
           </div>
         </div>
         <div className="postContentItem-header-more">

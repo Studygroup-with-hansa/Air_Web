@@ -9,8 +9,8 @@ import useStatItem from "hooks/stat/useStatItem";
 import "./Calendar.scss";
 
 const Calendar = (props: { type: string }): JSX.Element => {
-  const { stat, calendarGetGoal, changeTimeType } = useStatItem();
-  const statData = stat.data;
+  const { getStat, calendarGetGoal, changeTimeType } = useStatItem();
+  const statData = getStat.data;
 
   const [getMoment, setMoment] = useState<Moment>(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);

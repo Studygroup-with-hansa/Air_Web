@@ -9,9 +9,9 @@ import usePostItem from "hooks/post/usePostItem";
 import "./PostCalendar.scss";
 
 const PostCalendar = (): JSX.Element => {
-  const { stat, calendarGetGoal, changeTimeType } = useStatItem();
+  const { getStat, calendarGetGoal, changeTimeType } = useStatItem();
   const { getPost } = usePostItem();
-  const statData = stat.data;
+  const statData = getStat.data;
   const postData = getPost.data;
 
   const [getMoment, setMoment] = useState<Moment>(moment());

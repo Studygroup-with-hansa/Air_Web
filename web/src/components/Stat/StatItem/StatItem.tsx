@@ -8,8 +8,8 @@ import useStatItem from "hooks/stat/useStatItem";
 import "./StatItem.scss";
 
 const StatItem = ({ startDate, endDate }: IDateTypes) => {
-  const { stat } = useStatItem(); //나중에 서버 값으로 변경
-  const statData = stat.data;
+  const { getStat } = useStatItem(); //나중에 서버 값으로 변경
+  const statData = getStat.data;
 
   const activeTab = useRecoilValue<number>(activeTabState);
   const totalTime = useRecoilValue<string>(totalTimeState);
