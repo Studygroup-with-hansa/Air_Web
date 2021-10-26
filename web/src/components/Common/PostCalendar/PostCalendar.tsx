@@ -36,18 +36,14 @@ const PostCalendar = (): JSX.Element => {
   const dateArr = (index: number, days: Moment, type: string) => {
     switch (type) {
       case "month":
-        if (statDate.activeDate === days.format("YYYY.MM.DD")) {
-          className = "date active";
-        } else if (statDate.dateArray[1] === getMoment.format("MM")) {
+        if (statDate.dateArray[1] === getMoment.format("MM")) {
           className = "date dateCycle";
         } else {
           className = "date";
         }
         break;
       case "week":
-        if (statDate.activeDate === days.format("YYYY.MM.DD")) {
-          className = "date active";
-        } else if (
+        if (
           dateData.startDate[1] <= days.format("YYYY.MM.DD") &&
           dateData.endDate[1] >= days.format("YYYY.MM.DD")
         ) {
@@ -59,7 +55,7 @@ const PostCalendar = (): JSX.Element => {
       case "day":
         className =
           statDate.activeDate === days.format("YYYY.MM.DD")
-            ? "date active"
+            ? "date dateCycle"
             : "date";
         break;
     }
