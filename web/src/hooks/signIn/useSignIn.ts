@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { postSignIn, putSignIn } from "lib/api/sign/sign.api";
+import { postSignIn, putSignIn } from "lib/api/user/user.api";
 
 const useSignIn = () => {
   const requestSignIn = useCallback(async (email: string) => {
