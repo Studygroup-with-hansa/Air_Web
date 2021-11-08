@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { History } from "history";
@@ -23,19 +23,25 @@ const Sign = (): JSX.Element => {
     });
   };
   const onClickButton = useCallback(() => {
-    // !request.email ? (
-    //   <></>
-    // ) : (
-    //   (document.getElementsByClassName("info")[0].childNodes[0].nodeValue =
-    //     "전송했습니다 5분 안에 코드를 입력해주세요")
-    // );
     requestSignIn(request.email);
+    !request.email ? (
+      <></>
+    ) : (
+      (document.getElementsByClassName("info")[0].childNodes[0].nodeValue =
+        "전송했습니다 5분 안에 코드를 입력해주세요")
+    );
   }, [request.email]);
   const handleButton = useCallback(() => {
-    requestSignInCode(request.auth, request.email).then((e) =>
-      localStorage.setItem("token", e.token)
-    );
-  }, [request.auth]);
+    requestSignInCode(request.auth, request.email)
+      .then((e) => {
+        localStorage.setItem("token", e.token);
+
+        history.push("/");
+      })
+      .catch((e) => {
+        return;
+      });
+  }, [request]);
 
   return (
     <>
