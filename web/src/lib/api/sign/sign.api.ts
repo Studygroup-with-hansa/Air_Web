@@ -9,3 +9,11 @@ export const postSignIn = async (email: string) => {
 
   return data;
 };
+
+export const putSignIn = async (auth: string, email: string) => {
+  const { data } = await CustomAxios.put(
+    `/user/manage/signin/?auth=${auth}&email=${email}`
+  );
+
+  return data;
+};
