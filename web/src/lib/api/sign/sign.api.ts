@@ -1,4 +1,4 @@
-import CustomAxios from "../../token/CustomAxios";
+import CustomAxios from "lib/token/CustomAxios";
 
 export const postSignIn = async (email: string) => {
   const body = {

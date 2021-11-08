@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import defaultProfile from "assets/defaultProfile.svg";
 import addImg from "assets/addImg.svg";
 import { History } from "history";
+import { useRecoilValue } from "recoil";
+import { darkModeState } from "recoil/darkMode";
 
 const SignUp = (): JSX.Element => {
   const [fileUrl, setFileUrl] = useState<null | string>(null);
