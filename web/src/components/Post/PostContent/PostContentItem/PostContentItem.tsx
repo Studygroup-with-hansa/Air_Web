@@ -24,7 +24,7 @@ const PostContentItem = (props: { isMine: boolean }): JSX.Element => {
             <div className="postContentItem-header-title-name">
               {postData.username}
             </div>
-            <div>{postData.postDate.replace("-", ".")}</div>
+            <div>{postData.postDate.replace(/\-/g, ".")}</div>
           </div>
         </div>
         <div className="postContentItem-header-more">

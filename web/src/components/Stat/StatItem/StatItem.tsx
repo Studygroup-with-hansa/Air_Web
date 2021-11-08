@@ -35,7 +35,7 @@ const StatItem = ({ startDate, endDate }: IDateTypes) => {
             </div>
             <div className="statItem-right-content-title">
               평균 목표 달성률
-              <div>{statData.goals}%</div>
+              <div>{statData.achievementRate}%</div>
             </div>
           </div>
           <div className="statItem-right-content-item">

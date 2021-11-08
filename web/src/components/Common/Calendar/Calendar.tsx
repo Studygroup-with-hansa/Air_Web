@@ -95,15 +95,7 @@ const Calendar = (props: { type: string }): JSX.Element => {
     }
 
     return (
-      <td
-        key={index}
-        // onClick={() => {
-        //   props.isControl ?
-        //   handleDate(days):
-        // }}
-        onClick={() => handleDate(days)}
-        className={className}
-      >
+      <td key={index} onClick={() => handleDate(days)} className={className}>
         <div className="calendar-date">{days.format("D")}</div>
         <div className="calendar-percent">
           <div className="calendar-percent-item">

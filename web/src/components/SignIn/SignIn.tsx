@@ -6,17 +6,20 @@ import { History } from "history";
 import "./SignIn.scss";
 
 const Sign = (): JSX.Element => {
-  const [isEmpty, setIsEmpty] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const history: History = useHistory();
   const onChangeButton = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsEmpty(e.target.value);
+    setEmail(e.target.value);
   };
   const onClickButton = useCallback(() => {
-    !isEmpty
-      ? console.log("isEmpty")
-      : (document.getElementsByClassName("info")[0].childNodes[0].nodeValue =
-          "전송했습니다 5분 안에 코드를 입력해주세요");
-  }, [isEmpty]);
+    !email ? (
+      <></>
+    ) : (
+      (document.getElementsByClassName("info")[0].childNodes[0].nodeValue =
+        "전송했습니다 5분 안에 코드를 입력해주세요")
+    );
+    console.log(email);
+  }, [email]);
   const handleButton = useCallback(() => {
     history.push("/signup");
   }, []);
@@ -29,26 +32,19 @@ const Sign = (): JSX.Element => {
             <div className="signIn-content-title">로그인</div>
             <div>
               이메일
-              {isEmpty ? <span className="info"> </span> : <></>}
+              {email ? <span className="info"> </span> : <></>}
             </div>
             <input
-              style={!isEmpty ? { borderColor: "#e92121" } : {}}
-              value={isEmpty}
+              value={email}
               onChange={onChangeButton}
               className="signIn-content-input"
               type="text"
               placeholder="이메일을 입력해주세요"
             />
-            <button
-              onClick={onClickButton}
-              className={!isEmpty ? "isEmpty" : ""}
-            >
+            <button onClick={onClickButton} className={!email ? "isEmpty" : ""}>
               인증
             </button>
 
-            <div className="infotext">
-              {!isEmpty ? "이메일이 입력되지 않았습니다" : ""}
-            </div>
             <div>인증코드</div>
             <input type="text" placeholder="인증 코드를 입력해주세요" />
           </div>

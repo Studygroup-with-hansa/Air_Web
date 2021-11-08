@@ -4,7 +4,8 @@ const useStatItem = () => {
 
     getStat.data.stats.forEach((data) => {
       //나중에 서버 값으로 바꾸기
-      if (data.date === date) goal = data.goal;
+      if (data.date === date)
+        data.achievementRate ? (goal = data.achievementRate) : (goal = 0);
     });
 
     return goal;
@@ -26,76 +27,116 @@ const useStatItem = () => {
     status: 200,
     detail: "OK",
     data: {
-      totalTime: 3000,
-      goals: 95,
+      totalTime: 28051,
+      goals: 40000,
+      achievementRate: 45,
       stats: [
         {
-          date: "2021-10-07",
-          totalStudyTime: 40312,
+          date: "2021-03-07",
+          totalStudyTime: 4312,
+          achievementRate: 45,
           subject: [
             {
               title: "수학",
               time: 3,
-              color: "#ffffff",
+              color: "#5F79D3",
             },
             {
               title: "국어",
               time: 10,
-              color: "#000000",
+              color: "#FFFFF0",
             },
           ],
-          goal: 100,
+          goal: 10000,
         },
         {
-          date: "2021-10-08",
-          totalStudyTime: 40312,
+          date: "2021-03-08",
+          totalStudyTime: 2734,
+          achievementRate: 45,
           subject: [
             {
               title: "수학",
               time: 3,
-              color: "#ffffff",
+              color: "#5F79D3",
             },
             {
               title: "국어",
               time: 10,
-              color: "#000000",
+              color: "#FFFFF0",
             },
           ],
-          goal: 30,
+          goal: 10000,
         },
         {
-          date: "2021-10-12",
-          totalStudyTime: 40312,
-          subject: [
-            {
-              title: "수학",
-              time: 3,
-              color: "#ffffff",
-            },
-            {
-              title: "국어",
-              time: 10,
-              color: "#000000",
-            },
-          ],
-          goal: 40,
+          date: "2021-03-07",
+          totalStudyTime: 0,
+          achievementRate: 0,
+          subject: [],
+          goal: 0,
         },
         {
-          date: "2021-10-13",
-          totalStudyTime: 40312,
+          date: "2021-03-08",
+          totalStudyTime: 0,
+          achievementRate: 0,
+          subject: [],
+          goal: 0,
+        },
+        {
+          date: "2021-03-09",
+          totalStudyTime: 0,
+          achievementRate: 0,
+          subject: [],
+          goal: 0,
+        },
+        {
+          date: "2021-03-10",
+          totalStudyTime: 0,
+          achievementRate: 45,
+          subject: [],
+          goal: 0,
+        },
+        {
+          date: "2021-03-11",
+          totalStudyTime: 0,
+          achievementRate: 45,
+          subject: [],
+          goal: 0,
+        },
+        {
+          date: "2021-03-12",
+          totalStudyTime: 7865,
+          achievementRate: 45,
           subject: [
             {
               title: "수학",
               time: 3,
-              color: "#ffffff",
+              color: "#5F79D3",
             },
             {
               title: "국어",
               time: 10,
-              color: "#000000",
+              color: "#FFFFF0",
             },
           ],
-          goal: 50,
+          goal: 10000,
+        },
+        {
+          date: "2021-03-13",
+          totalStudyTime: 13140,
+          achievementRate: 45,
+          subject: [
+            {
+              title: "수학",
+              time: 3,
+              color: "#5F79D3",
+            },
+            {
+              title: "국어",
+              time: 10,
+              color: "#FFFFF0",
+            },
+          ],
+          goal: 10000,
         },
       ],
     },
