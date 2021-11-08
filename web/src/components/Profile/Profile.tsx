@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import ImageInputBox from "components/Common/ImageInput";
 import { profileImageState } from "recoil/profile";
-import { postNameLength } from "validation/profile.validation";
-import defaultProfile from "assets/defaultProfile.svg";
+import IDefaultProfile from "assets/IDefaultProfile";
+import { darkModeState } from "recoil/darkMode";
 
 import "./Profile.scss";
 
 const Profile = () => {
   const profileImage = useRecoilValue<File | undefined>(profileImageState);
+  const darkMode = useRecoilValue<boolean>(darkModeState);
   const [name, setName] = useState<string>("");
 
   let imageUrl: string | undefined = undefined;
@@ -24,10 +25,11 @@ const Profile = () => {
       <div className="profile-contents">
         <div className="profile-contents-view">
           <div className="profile-contents-view-img">
-            <img
-              src={!imageUrl ? defaultProfile : imageUrl}
-              alt="profile image"
-            />
+            {!imageUrl ? (
+              <IDefaultProfile color={darkMode ? "#F1F1F3" : "#555555"} />
+            ) : (
+              <img src={imageUrl} alt="image" />
+            )}
           </div>
           <div className="profile-contents-view-name">{name}</div>
         </div>
