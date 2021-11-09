@@ -4,13 +4,17 @@ import ImageInputBox from "components/Common/ImageInput";
 import { profileImageState } from "recoil/profile";
 import IDefaultProfile from "assets/IDefaultProfile";
 import { darkModeState } from "recoil/darkMode";
+import useUser from "hooks/user/useUser";
 
 import "./Profile.scss";
 
 const Profile = () => {
+  const { responseUserData } = useUser();
   const profileImage = useRecoilValue<File | undefined>(profileImageState);
   const darkMode = useRecoilValue<boolean>(darkModeState);
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>(responseUserData.name);
+
+  console.log(responseUserData.name);
 
   let imageUrl: string | undefined = undefined;
   if (profileImage) imageUrl = URL.createObjectURL(profileImage);

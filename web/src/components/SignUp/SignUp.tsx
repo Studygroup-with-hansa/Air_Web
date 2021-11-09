@@ -3,10 +3,11 @@ import { useHistory } from "react-router-dom";
 import defaultProfile from "assets/defaultProfile.svg";
 import addImg from "assets/addImg.svg";
 import { History } from "history";
-import { useRecoilValue } from "recoil";
-import { darkModeState } from "recoil/darkMode";
+import SignIn from "components/SignIn";
+import useUser from "hooks/user/useUser";
 
 const SignUp = (): JSX.Element => {
+  const { isLogin } = useUser();
   const [fileUrl, setFileUrl] = useState<null | string>(null);
   const history: History = useHistory();
 
@@ -19,7 +20,7 @@ const SignUp = (): JSX.Element => {
     history.push("/signin");
   }, []);
 
-  return (
+  return isLogin ? (
     <>
       <div className="signIn">
         <div className="signIn-content">
@@ -54,6 +55,8 @@ const SignUp = (): JSX.Element => {
         </div>
       </div>
     </>
+  ) : (
+    <SignIn />
   );
 };
 

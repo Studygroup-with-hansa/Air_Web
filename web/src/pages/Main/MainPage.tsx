@@ -1,9 +1,10 @@
 import PageTemplate from "components/Common/PageTemplate";
 import Main from "components/Main/Main";
 import SignIn from "components/SignIn";
+import useUser from "hooks/user/useUser";
 
 const MainPage = (): JSX.Element => {
-  const isLogin: null | string = localStorage.getItem("token");
+  const { isLogin } = useUser();
 
   return isLogin ? (
     <>

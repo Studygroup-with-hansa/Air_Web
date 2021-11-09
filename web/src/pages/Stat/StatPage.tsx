@@ -1,12 +1,20 @@
 import Stat from "components/Stat";
 import PageTemplate from "components/Common/PageTemplate";
+import SignIn from "components/SignIn";
+import useUser from "hooks/user/useUser";
 
 const StatPage = () => {
-  return (
+  const { isLogin } = useUser();
+
+  return isLogin ? (
     <>
       <PageTemplate>
         <Stat />
       </PageTemplate>
+    </>
+  ) : (
+    <>
+      <SignIn />
     </>
   );
 };

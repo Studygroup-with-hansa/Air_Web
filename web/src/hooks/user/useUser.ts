@@ -1,7 +1,9 @@
 import { useCallback } from "react";
-import { postSignIn, putSignIn } from "lib/api/user/user.api";
+import { getUser, postSignIn, putSignIn } from "lib/api/user/user.api";
 
 const useSignIn = () => {
+  const isLogin: null | string = localStorage.getItem("token");
+
   const requestSignIn = useCallback(async (email: string) => {
     try {
       const { data } = await postSignIn(email);
@@ -20,7 +22,15 @@ const useSignIn = () => {
     }
   }, []);
 
-  return { requestSignIn, requestSignInCode };
+  const responseUserData = useCallback(async () => {
+    try {
+      const { data } = await getUser();
+
+      return data;
+    } catch {}
+  }, []);
+
+  return { isLogin, requestSignIn, requestSignInCode, responseUserData };
 };
 
 export default useSignIn;

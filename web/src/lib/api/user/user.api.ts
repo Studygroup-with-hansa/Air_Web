@@ -17,3 +17,9 @@ export const putSignIn = async (auth: string, email: string) => {
 
   return data;
 };
+
+export const getUser = async () => {
+  const { data } = await CustomAxios.get("/user/info/manage/basic/");
+
+  return data;
+};

@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { History } from "history";
 import { ISignInTypes } from "types/signIn.types";
-import useSignIn from "hooks/signIn/useSignIn";
+import useSignIn from "hooks/user/useUser";
 
 import "./SignIn.scss";
 
