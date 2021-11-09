@@ -1,12 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import moment, { Moment } from "moment";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
 import { dateDataState, statDateState, totalTimeState } from "recoil/stat";
 import useStatItem from "hooks/stat/useStatItem";
 import usePostItem from "hooks/post/usePostItem";
-
-import "./PostCalendar.scss";
 
 const PostCalendar = (): JSX.Element => {
   const { getStat, calendarGetGoal, changeTimeType } = useStatItem();
@@ -19,8 +17,6 @@ const PostCalendar = (): JSX.Element => {
   const [dateData, setDateData] = useRecoilState<IDateDataTypes>(dateDataState);
   const setTotalTime = useSetRecoilState<string>(totalTimeState);
   const dayWeek: string[] = ["일", "월", "화", "수", "목", "금", "토"];
-  let startDate: string[] = ["", "", String(getMoment)];
-  let endDate: string[] = ["", "", String(getMoment)];
   let className: string = "";
 
   const firstWeek: number = getMoment.clone().startOf("month").week();

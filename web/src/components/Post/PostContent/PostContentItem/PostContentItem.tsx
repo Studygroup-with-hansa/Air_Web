@@ -1,7 +1,7 @@
-import more from "assets/more.svg";
-import send from "assets/send.svg";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { VscComment } from "react-icons/vsc";
+import { AiOutlineDelete } from "react-icons/ai";
+import send from "assets/send.svg";
 import PostStatItem from "./PostStatItem";
 import usePostItem from "hooks/post/usePostItem";
 
@@ -28,7 +28,13 @@ const PostContentItem = (props: { isMine: boolean }): JSX.Element => {
           </div>
         </div>
         <div className="postContentItem-header-more">
-          {props.isMine ? <img src={more} alt="more" /> : <></>}
+          {props.isMine ? (
+            <AiOutlineDelete
+              style={{ fontSize: "24px", color: "var(--red)", opacity: "50%" }}
+            />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div>
