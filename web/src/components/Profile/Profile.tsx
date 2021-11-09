@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import ImageInputBox from "components/Common/ImageInput";
+import { History } from "history";
 import { profileImageState } from "recoil/profile";
-import IDefaultProfile from "assets/IDefaultProfile";
 import { darkModeState } from "recoil/darkMode";
+import ImageInputBox from "components/Common/ImageInput";
+import IDefaultProfile from "assets/IDefaultProfile";
 import useUser from "hooks/user/useUser";
+import isEmpty from "util/isEmpty";
 
 import "./Profile.scss";
-import isEmpty from "../../util/isEmpty";
 
 const Profile = () => {
-  const { responseUserData } = useUser();
+  const { responseUserData, requestUserData } = useUser();
+  const history: History = useHistory();
   const profileImage = useRecoilValue<File | undefined>(profileImageState);
   const darkMode = useRecoilValue<boolean>(darkModeState);
   const [name, setName] = useState<string>("");
@@ -19,14 +22,21 @@ const Profile = () => {
     responseUserData().then((e) => {
       var { name } = e;
       setName(name);
-      console.log(name);
     });
 
   let imageUrl: string | undefined = undefined;
   if (profileImage) imageUrl = URL.createObjectURL(profileImage);
 
-  const handleInput = (e: { target: { value: string } }) => {
-    setName(e.target.value);
+  const handleInput = useCallback(
+    (e: { target: { value: string } }) => {
+      setName(e.target.value.replace(/(\s*)/g, ""));
+    },
+    [name]
+  );
+  const handleButton = () => {
+    requestUserData(name);
+    setName("");
+    history.push("/");
   };
 
   return (
@@ -63,7 +73,9 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="profile-contents-btn">저장하기</div>
+          <div className="profile-contents-btn" onClick={handleButton}>
+            저장하기
+          </div>
         </div>
       </div>
     </div>

@@ -18,8 +18,16 @@ export const putSignIn = async (auth: string, email: string) => {
   return data;
 };
 
-export const getUser = async () => {
+export const getUserName = async () => {
   const { data } = await CustomAxios.get("/user/info/manage/basic/");
+
+  return data;
+};
+
+export const putUserName = async (name: string) => {
+  const { data } = await CustomAxios.put(
+    `/user/info/manage/basic/name/?name=${name}`
+  );
 
   return data;
 };
