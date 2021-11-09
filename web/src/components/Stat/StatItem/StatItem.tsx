@@ -15,7 +15,6 @@ const StatItem = () => {
   const activeTab = useRecoilValue<number>(activeTabState);
   const [totalTime, setTotalTime] = useState<string>();
   const [goal, setGoal] = useState<number>();
-  const [subject, setSubject] = useState<object[]>();
   const statDate = useRecoilValue<IStatDateTypes>(statDateState);
 
   const tabMenu: { [key: number]: JSX.Element } = {
@@ -27,21 +26,16 @@ const StatItem = () => {
   useEffect(() => {
     getStat.data.stats.map((data) => {
       data.date === statDate.activeDate ? (
-        setState(data.totalStudyTime, data.achievementRate, data.subject)
+        setState(data.totalStudyTime, data.achievementRate)
       ) : (
         <></>
       );
     });
   }, [statDate.activeDate]);
 
-  const setState = (
-    totalStudyTime: number,
-    achievementRate: number,
-    subject: object[]
-  ) => {
+  const setState = (totalStudyTime: number, achievementRate: number) => {
     setTotalTime(changeTimeType(totalStudyTime));
     setGoal(achievementRate);
-    setSubject(subject);
   };
 
   return (
