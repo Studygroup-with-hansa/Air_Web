@@ -1,7 +1,7 @@
-import moment from "moment";
 import { atom } from "recoil";
 import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
 import { ETabMenu } from "lib/enum/stat";
+import moment from "moment";
 
 export const activeTabState = atom<ETabMenu>({
   key: "activeTabState",

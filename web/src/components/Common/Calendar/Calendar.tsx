@@ -1,21 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
-import moment, { Moment } from "moment";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useCallback, useState } from "react";
+import { useRecoilState } from "recoil";
 import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
-import { dateDataState, statDateState, totalTimeState } from "recoil/stat";
+import { dateDataState, statDateState } from "recoil/stat";
+import moment, { Moment } from "moment";
 import arrow from "assets/arrow.svg";
 import useStatItem from "hooks/stat/useStatItem";
 
 import "./Calendar.scss";
 
 const Calendar = (props: { type: string }): JSX.Element => {
-  const { getStat, calendarGetGoal, changeTimeType } = useStatItem();
-  const statData = getStat.data;
+  const { calendarGetGoal } = useStatItem();
 
-  const [getMoment, setMoment] = useState<Moment>(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
   const [dateData, setDateData] = useRecoilState<IDateDataTypes>(dateDataState);
-  const setTotalTime = useSetRecoilState<string>(totalTimeState);
+  const [getMoment, setMoment] = useState<Moment>(moment());
+
   const dayWeek: string[] = ["일", "월", "화", "수", "목", "금", "토"];
   let startDate: string[] = ["", "", String(getMoment)];
   let endDate: string[] = ["", "", String(getMoment)];
@@ -26,10 +25,6 @@ const Calendar = (props: { type: string }): JSX.Element => {
     getMoment.clone().endOf("month").week() === 1
       ? 53
       : getMoment.clone().endOf("month").week();
-
-  useEffect(() => {
-    setTotalTime(changeTimeType(statData.totalTime));
-  }, []);
 
   const handleDate = useCallback(
     (date: Moment) => {
@@ -58,7 +53,6 @@ const Calendar = (props: { type: string }): JSX.Element => {
         startDate: startDate,
         endDate: endDate,
       });
-      setTotalTime(changeTimeType(statData.totalTime));
     },
     [statDate.activeDate]
   );
@@ -103,13 +97,13 @@ const Calendar = (props: { type: string }): JSX.Element => {
             <div
               style={{
                 backgroundColor: `rgb(95,121,211, ${
-                  30 + calendarGetGoal(days.format("YYYY-MM-DD")) * (7 / 10)
+                  30 + calendarGetGoal(days.format("YYYY.MM.DD")) * (7 / 10)
                 }%)`,
               }}
               className="calendar-percent-item-text"
             >
               {className === "date dateCycle" || className === "date active"
-                ? `${calendarGetGoal(days.format("YYYY-MM-DD"))}%`
+                ? `${calendarGetGoal(days.format("YYYY.MM.DD"))}%`
                 : ""}
             </div>
           </div>

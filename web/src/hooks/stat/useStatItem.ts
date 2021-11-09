@@ -32,7 +32,7 @@ const useStatItem = () => {
       achievementRate: 45,
       stats: [
         {
-          date: "2021-03-07",
+          date: "2021.11.07",
           totalStudyTime: 4312,
           achievementRate: 45,
           subject: [
@@ -50,7 +50,7 @@ const useStatItem = () => {
           goal: 10000,
         },
         {
-          date: "2021-03-08",
+          date: "2021.11.08",
           totalStudyTime: 2734,
           achievementRate: 45,
           subject: [
@@ -68,42 +68,42 @@ const useStatItem = () => {
           goal: 10000,
         },
         {
-          date: "2021-03-07",
+          date: "2021.11.07",
           totalStudyTime: 0,
           achievementRate: 0,
           subject: [],
           goal: 0,
         },
         {
-          date: "2021-03-08",
+          date: "2021.11.08",
           totalStudyTime: 0,
           achievementRate: 0,
           subject: [],
           goal: 0,
         },
         {
-          date: "2021-03-09",
+          date: "2021.11.09",
           totalStudyTime: 0,
           achievementRate: 0,
           subject: [],
           goal: 0,
         },
         {
-          date: "2021-03-10",
+          date: "2021.11.10",
           totalStudyTime: 0,
           achievementRate: 45,
           subject: [],
           goal: 0,
         },
         {
-          date: "2021-03-11",
+          date: "2021.11.11",
           totalStudyTime: 0,
           achievementRate: 45,
           subject: [],
           goal: 0,
         },
         {
-          date: "2021-03-12",
+          date: "2021.11.12",
           totalStudyTime: 7865,
           achievementRate: 45,
           subject: [
@@ -121,7 +121,7 @@ const useStatItem = () => {
           goal: 10000,
         },
         {
-          date: "2021-03-13",
+          date: "2021.11.13",
           totalStudyTime: 13140,
           achievementRate: 45,
           subject: [

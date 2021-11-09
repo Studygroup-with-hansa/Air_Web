@@ -1,18 +1,22 @@
-import { useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { activeTabState, totalTimeState } from "recoil/stat";
+import { IStatDateTypes } from "types/stat.types";
+import { statDateState } from "recoil/stat";
 import Calendar from "components/Common/Calendar";
 import Chart from "components/Common/Chart";
-import { IDateTypes } from "types/stat.types";
 import useStatItem from "hooks/stat/useStatItem";
 
 import "./StatItem.scss";
 
-const StatItem = ({ startDate, endDate }: IDateTypes) => {
-  const { getStat } = useStatItem(); //나중에 서버 값으로 변경
-  const statData = getStat.data;
+const StatItem = () => {
+  const { getStat, changeTimeType } = useStatItem();
 
   const activeTab = useRecoilValue<number>(activeTabState);
-  const totalTime = useRecoilValue<string>(totalTimeState);
+  const [totalTime, setTotalTime] = useState<string>();
+  const [goal, setGoal] = useState<number>();
+  const [subject, setSubject] = useState<object[]>();
+  const statDate = useRecoilValue<IStatDateTypes>(statDateState);
 
   const tabMenu: { [key: number]: JSX.Element } = {
     0: <Calendar type="month" />,
@@ -20,13 +24,31 @@ const StatItem = ({ startDate, endDate }: IDateTypes) => {
     2: <Calendar type="day" />,
   };
 
+  useEffect(() => {
+    getStat.data.stats.map((data) => {
+      data.date === statDate.activeDate ? (
+        setState(data.totalStudyTime, data.achievementRate, data.subject)
+      ) : (
+        <></>
+      );
+    });
+  }, [statDate.activeDate]);
+
+  const setState = (
+    totalStudyTime: number,
+    achievementRate: number,
+    subject: object[]
+  ) => {
+    setTotalTime(changeTimeType(totalStudyTime));
+    setGoal(achievementRate);
+    setSubject(subject);
+  };
+
   return (
     <div className="statItem">
       <div className="statItem-left">{tabMenu[activeTab]}</div>
       <div className="statItem-right">
-        <div className="statItem-right-date">
-          {startDate} ~ {endDate}
-        </div>
+        <div className="statItem-right-date">{statDate.activeDate}</div>
         <div className="statItem-right-content">
           <div>
             <div className="statItem-right-content-title">
@@ -34,8 +56,8 @@ const StatItem = ({ startDate, endDate }: IDateTypes) => {
               <div>{totalTime}</div>
             </div>
             <div className="statItem-right-content-title">
-              평균 목표 달성률
-              <div>{statData.achievementRate}%</div>
+              목표 달성률
+              <div>{goal}%</div>
             </div>
           </div>
           <div className="statItem-right-content-item">
