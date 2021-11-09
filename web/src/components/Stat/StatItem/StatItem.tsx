@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { activeTabState, totalTimeState } from "recoil/stat";
-import { IStatDateTypes } from "types/stat.types";
+import { useRecoilValue } from "recoil";
+import { activeTabState, dateDataState } from "recoil/stat";
+import { IDateDataTypes, IStatDateTypes } from "types/stat.types";
 import { statDateState } from "recoil/stat";
 import Calendar from "components/Common/Calendar";
 import Chart from "components/Common/Chart";
 import useStatItem from "hooks/stat/useStatItem";
+import usePost from "hooks/post/usePost";
+import moment from "moment";
 
 import "./StatItem.scss";
 
 const StatItem = () => {
   const { getStat, changeTimeType } = useStatItem();
+  const { requestPost } = usePost();
 
   const activeTab = useRecoilValue<number>(activeTabState);
   const [totalTime, setTotalTime] = useState<string>();
   const [goal, setGoal] = useState<number>();
   const statDate = useRecoilValue<IStatDateTypes>(statDateState);
+  const dateData = useRecoilValue<IDateDataTypes>(dateDataState);
 
   const tabMenu: { [key: number]: JSX.Element } = {
     0: <Calendar type="month" />,
     1: <Calendar type="week" />,
     2: <Calendar type="day" />,
+  };
+  const calendarType: { [key: number]: string } = {
+    0: "month",
+    1: "week",
+    2: "day",
   };
 
   useEffect(() => {
@@ -36,6 +45,13 @@ const StatItem = () => {
   const setState = (totalStudyTime: number, achievementRate: number) => {
     setTotalTime(changeTimeType(totalStudyTime));
     setGoal(achievementRate);
+  };
+  const handleButton = () => {
+    requestPost(
+      dateData.startDate[activeTab],
+      moment().format("YYYY.MM.DD"),
+      calendarType[activeTab]
+    );
   };
 
   return (
@@ -59,6 +75,7 @@ const StatItem = () => {
           </div>
         </div>
       </div>
+      <button onClick={handleButton}>공유하기</button>
     </div>
   );
 };
