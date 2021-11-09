@@ -13,3 +13,10 @@ export interface IMainListStyleType {
   data: number;
   customStyle?: CSSProperties;
 }
+
+export interface IRankDataTypes {
+  rank: string;
+  username: string;
+  achievementRate: number[];
+  totalStudyTime: string;
+}

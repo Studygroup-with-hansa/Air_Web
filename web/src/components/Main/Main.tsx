@@ -1,10 +1,19 @@
-import useMainList from "hooks/main/useMainList";
+import { useState } from "react";
 import MainList from "./MainList";
+import useRank from "hooks/main/useRank";
+import { IRankDataTypes } from "types/mainList.types";
 
 import "./Main.scss";
 
 const Main = (): JSX.Element => {
-  const { EveryMainListDummy } = useMainList();
+  const { responseRank } = useRank();
+  const [rankData, setRankData] = useState<IRankDataTypes[]>([]);
+
+  responseRank().then((e) => {
+    const { rank } = e;
+
+    setRankData(rank);
+  });
 
   return (
     <div className="main">
@@ -31,19 +40,25 @@ const Main = (): JSX.Element => {
           isMine={true}
         />
         <div className="main-list-content">
-          {EveryMainListDummy.map((data) => {
-            return (
-              <>
-                <MainList
-                  rank={data.rank}
-                  name={data.name}
-                  week={data.week}
-                  time={data.time}
-                />
-              </>
-            );
-          })}
-          {}
+          {rankData.map(
+            (data: {
+              rank: string;
+              username: string;
+              achievementRate: number[];
+              totalStudyTime: string;
+            }) => {
+              return (
+                <>
+                  <MainList
+                    rank={data.rank}
+                    name={data.username}
+                    week={data.achievementRate}
+                    time={data.totalStudyTime}
+                  />
+                </>
+              );
+            }
+          )}
         </div>
       </div>
     </div>
