@@ -9,6 +9,7 @@ import "./PostContentItem.scss";
 
 const PostContentItem = (props: { isMine: boolean }): JSX.Element => {
   const { getPost } = usePostItem();
+
   const postData = getPost.data;
 
   return (
@@ -28,13 +29,13 @@ const PostContentItem = (props: { isMine: boolean }): JSX.Element => {
           </div>
         </div>
         <div className="postContentItem-header-more">
-          {props.isMine ? (
+          {/* {props.isMine ? (
             <AiOutlineDelete
               style={{ fontSize: "24px", color: "var(--red)", opacity: "50%" }}
             />
           ) : (
             <></>
-          )}
+          )} */}
         </div>
       </div>
       <div>

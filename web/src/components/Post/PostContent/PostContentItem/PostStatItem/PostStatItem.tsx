@@ -6,7 +6,6 @@ const PostStatItem = () => {
   return (
     <div className="postStatItem">
       <div className="postStatItem-calendar">
-        {/* <Calendar type="week" isControl={false} /> */}
         <PostCalendar />
       </div>
     </div>

@@ -3,6 +3,7 @@ import MainListItem from "./MainListItem";
 import Crown from "assets/ICrown";
 
 import "./MainList.scss";
+import useStatItem from "hooks/stat/useStatItem";
 
 const MainList = ({
   rank,
@@ -11,6 +12,8 @@ const MainList = ({
   time,
   isMine,
 }: IMainListTypes): JSX.Element => {
+  const { changeTimeType } = useStatItem();
+
   let rankStyle = "";
   switch (rank) {
     case "1":
@@ -53,7 +56,7 @@ const MainList = ({
           <MainListItem opacity={`${30 + data * (7 / 10)}%`} data={data} />
         ))}
       </div>
-      <div className="mainList-time">{time}</div>
+      <div className="mainList-time">{changeTimeType(Number(time))}</div>
     </div>
   );
 };
