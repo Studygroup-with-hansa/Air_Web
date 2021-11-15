@@ -10,9 +10,10 @@ const Main = (): JSX.Element => {
   const [rankData, setRankData] = useState<IRankDataTypes[]>([]);
 
   responseRank().then((e) => {
-    const { rank } = e;
-
-    setRankData(rank);
+    if (e) {
+      const { rank } = e;
+      setRankData(rank);
+    }
   });
 
   return (
