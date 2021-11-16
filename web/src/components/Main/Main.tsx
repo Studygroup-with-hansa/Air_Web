@@ -35,9 +35,9 @@ const Main = (): JSX.Element => {
         </div>
         <MainList
           rank="1"
-          name="박상아"
-          week={[0, 14, 50, 100, 34, 32, 95]}
-          time="21341"
+          name="한국"
+          week={[58, 38, 0, 0, 0, 0, 0]}
+          time="2278"
           isMine={true}
         />
         <div className="main-list-content">
