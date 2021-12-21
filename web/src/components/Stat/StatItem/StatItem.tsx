@@ -75,7 +75,6 @@ const StatItem = () => {
           </div>
         </div>
       </div>
-      <button onClick={handleButton}>공유하기</button>
     </div>
   );
 };
