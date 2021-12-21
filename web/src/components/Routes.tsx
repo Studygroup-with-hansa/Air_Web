@@ -14,7 +14,7 @@ const Routes = (): JSX.Element => {
       <Route exact path="/" component={MainPage} />
       <Route exact path="/post" component={PostPage} />
       <Route exact path="/stat" component={StatPage} />
-      <Route exact path="/profile" component={ProfilePage} />
+      {/* <Route exact path="/profile" component={ProfilePage} /> */}
     </Switch>
   );
 };

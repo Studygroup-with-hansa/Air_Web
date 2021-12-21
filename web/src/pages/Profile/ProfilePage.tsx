@@ -4,7 +4,8 @@ import SignIn from "components/SignIn";
 import useUser from "hooks/user/useUser";
 
 const ProfilePage = () => {
-  const { isLogin } = useUser();
+  // const { isLogin } = useUser();
+  const isLogin = true;
 
   return isLogin ? (
     <>

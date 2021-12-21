@@ -59,14 +59,14 @@ const SideBar = (): JSX.Element => {
           alt="stat"
         />
       </div>
-      <div>
+      {/* <div>
         <img
           className={path === "/profile" ? "isMain" : ""}
           onClick={() => handleIcon("/profile")}
           src={profile}
           alt="profile"
         />
-      </div>
+      </div> */}
       <div className="sideBar-darkMode" onClick={handleDarkMode}>
         <img src={isDarkMode ? dark : light} alt="darkmode" />
       </div>
