@@ -10,7 +10,18 @@ const PostCalendar = (): JSX.Element => {
   const { getStat, calendarGetGoal, changeTimeType } = useStatItem();
   const { getPost } = usePostItem();
   const statData = getStat.data;
-  const postData = getPost.data;
+  // const postData = getPost.data;
+  const postData = {
+    username: "박상아",
+    userImage: "PROFILE_IMG_URL",
+    postDate: "2021.12.14",
+    startDate: "2021-12-19",
+    endDate: "2021-12-25",
+    achievementRate: [100, 176, 98, 0, 32, 68, 79],
+    calendarType: "week", // month, week, day
+    like: 3,
+    idx: 2,
+  };
 
   const [getMoment, setMoment] = useState<Moment>(moment());
   const [statDate, setStatDate] = useRecoilState<IStatDateTypes>(statDateState);
@@ -103,7 +114,7 @@ const PostCalendar = (): JSX.Element => {
                   </td>
                 );
               } else {
-                return dateArr(index, days, postData.calandarType);
+                return dateArr(index, days, postData.calendarType);
               }
             })}
         </tr>

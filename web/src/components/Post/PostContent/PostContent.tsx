@@ -6,7 +6,6 @@ const PostContent = (): JSX.Element => {
   return (
     <div className="postContent">
       <PostContentItem isMine={true} />
-      <PostContentItem isMine={false} />
     </div>
   );
 };
